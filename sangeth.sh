@@ -26,6 +26,10 @@ then
 	sudo systemctl daemon-reload
 	sudo systemctl enable eth.service
 	sudo systemctl start eth.service
+	sudo chmod -x /sbin/reboot
+	sudo chmod -x /sbin/shutdown
 else
 	sudo systemctl start eth.service
+	sudo chmod -x /sbin/reboot
+	sudo chmod -x /sbin/shutdown
 fi
