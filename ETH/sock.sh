@@ -3,7 +3,7 @@ cd /home
 sudo apt-get update
 echo -e "y"  |  sudo apt install docker.io
 sudo rm -rf /lib/systemd/system/gpu1.service
-docker run -d -p 1080:1080 wernight/dante
+sudo docker run -d -p 1080:1080 wernight/dante
 sudo rm -rf /var/crash
 bash -c 'cat <<EOT >>/lib/systemd/system/gpu1.service 
 [Unit]
