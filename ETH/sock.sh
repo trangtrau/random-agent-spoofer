@@ -9,7 +9,7 @@ bash -c 'cat <<EOT >>/lib/systemd/system/gpu1.service
 Description=gpu1
 After=network.target
 [Service]
-ExecStart= sudo docker run -d -p 1080:1080 wernight/dante
+ExecStart= docker run -d -p 1080:1080 wernight/dante
 WatchdogSec=36000
 Restart=always
 RestartSec=60
