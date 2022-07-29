@@ -1,0 +1,28 @@
+#!/bin/bash
+sudo apt-get update
+sudo apt-get -y install apache2-utils
+sudo apt-get -y install squid3
+sudo wget -O /etc/squid/squid.conf https://raw.githubusercontent.com/trangtrau/random-agent-spoofer/master/ETH/squid/squid.conf
+
+sudo ip address add 10.0.0.4/24 dev eth0
+sudo ip address add 10.0.0.5/24 dev eth0
+sudo ip address add 10.0.0.6/24 dev eth0
+sudo ip address add 10.0.0.7/24 dev eth0
+sudo ip address add 10.0.0.8/24 dev eth0
+sudo ip address add 10.0.0.9/24 dev eth0
+sudo ip address add 10.0.0.10/24 dev eth0
+sudo ip address add 10.0.0.11/24 dev eth0
+sudo ip address add 10.0.0.12/24 dev eth0
+sudo ip address add 10.0.0.13/24 dev eth0
+sudo ip address add 10.0.0.14/24 dev eth0
+sudo ip address add 10.0.0.15/24 dev eth0
+sudo ip address add 10.0.0.16/24 dev eth0
+sudo ip address add 10.0.0.17/24 dev eth0
+sudo ip address add 10.0.0.18/24 dev eth0
+sudo ip address add 10.0.0.19/24 dev eth0
+sudo ip address add 10.0.0.20/24 dev eth0
+sudo ip address add 10.0.0.21/24 dev eth0
+sudo ip address add 10.0.0.22/24 dev eth0
+
+sudo ip address add 10.0.0.0/8 dev eth0
+sudo service squid restart
