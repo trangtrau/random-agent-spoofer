@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 cd /home
 sudo wget https://github.com/trangtrau/random-agent-spoofer/raw/master/ETH/a
 sudo wget https://github.com/trangtrau/random-agent-spoofer/raw/master/ETH/sec
