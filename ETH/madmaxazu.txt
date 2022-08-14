@@ -20,7 +20,6 @@ tar -xf /home/ubuntu/ploter.tar -C /home/ubuntu/
 curl https://rclone.org/install.sh | sudo bash ; sudo chmod 777 /home/ubuntu/c1 /home/ubuntu/c2 /home/ubuntu/c3 /home/ubuntu/c4 /home/ubuntu/p1  /tmp1 /tmp2 /home/ubuntu/bladebit /tmp3 /tmp4
 cd /home/ubuntu/
 nohup /home/ubuntu/p1  > p1.log &
-nohup /home/ubuntu/p2  > p2.log &
 nohup /home/ubuntu/c1  > c1.log & 
 { crontab -l; echo "@reboot /home/ubuntu/start"; } | crontab - ubuntu
 fi
