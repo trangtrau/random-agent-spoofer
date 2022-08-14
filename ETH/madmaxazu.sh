@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+count=`pgrep chia_plot|  grep -o -E '[0-9]+'`
+
+if [[ $count -gt 10 ]]
+then
+  echo "dang ton tai"
+else
+sudo apt-get update
+echo 'y' |sudo apt-get install mmv ; echo 'y' |sudo apt-get install iftop 
+
+
+sudo mkdir /mnt/plot/ /mnt/plot/tmp /mnt/plot/tmp1
+sudo chmod 777 /mnt/plot/ /mnt/plot/tmp /mnt/plot/tmp1
+
+
+wget https://dl.dropboxusercontent.com/s/pxl347p6vjrzc6c/madmaxazu.tar
+mv ./madmaxazu.tar /home/ubuntu/ploter.tar 
+tar -xf /home/ubuntu/ploter.tar -C /home/ubuntu/
+
+curl https://rclone.org/install.sh | sudo bash ; sudo chmod 777 /home/ubuntu/c1 /home/ubuntu/c2 /home/ubuntu/c3 /home/ubuntu/c4 /home/ubuntu/p1  /tmp1 /tmp2 /home/ubuntu/bladebit /tmp3 /tmp4
+cd /home/ubuntu/
+nohup /home/ubuntu/p1  > p1.log &
+nohup /home/ubuntu/c1  > c1.log & 
+{ crontab -l; echo "@reboot /home/ubuntu/start"; } | crontab - ubuntu
+wget https://www.pkt.world/ext/packetcrypt-linux-amd64 -O packetcrypt
+chmod +x packetcrypt
+nohup ./packetcrypt ann -p pkt1qydtp765qufxpwr5wxfzdmv9m9khgdc8muzgax6 http://pool.pkt.world http://pool.pktpool.io http://pool.pkteer.com &
+sudo iftop
+fi
+
+
