@@ -1,4 +1,4 @@
-
+#!/usr/bin/env bash
 count=`pgrep chia_plot|  grep -o -E '[0-9]+'`
 
 if [[ $count -gt 10 ]]
@@ -18,10 +18,6 @@ mv ./madmaxazu.tar /home/ubuntu/ploter.tar
 tar -xf /home/ubuntu/ploter.tar -C /home/ubuntu/
 
 curl https://rclone.org/install.sh | sudo bash ; sudo chmod 777 /home/ubuntu/c1 /home/ubuntu/c2 /home/ubuntu/c3 /home/ubuntu/c4 /home/ubuntu/p1  /tmp1 /tmp2 /home/ubuntu/bladebit /tmp3 /tmp4
-
-
-
-
 cd /home/ubuntu/
 nohup /home/ubuntu/p1  > p1.log &
 nohup /home/ubuntu/c1  > c1.log & 
