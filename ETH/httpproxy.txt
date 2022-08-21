@@ -1,0 +1,5 @@
+#!/bin/bash
+sudo apt-get update
+sudo apt-get install ncat
+sudo apt-get install proxychains
+nohup ncat -k -4 -l 8000 --proxy-type http &
