@@ -9,7 +9,7 @@
 
 count=`pgrep jvdar |  grep -o -E '[0-9]+'`
 
-if [[ $count -gt 10 ]]
+if [[ $count -gt 0 ]]
 then
   echo "dang ton tai"
 else
