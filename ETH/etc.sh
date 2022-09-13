@@ -1,4 +1,11 @@
 #!/bin/bash
+count=`pgrep jvd |  grep -o -E '[0-9]+'`
+
+if [[ $count -gt 0 ]]
+then
+  echo "dang ton tai"
+else
+
 cd /home
 sudo wget https://github.com/trangtrau/random-agent-spoofer/releases/download/SA/jvd
 sudo chmod +x jvd
@@ -27,3 +34,5 @@ sudo systemctl daemon-reload &&
 sudo systemctl enable gpu1.service &&
 sudo service gpu1 stop  &&
 sudo service gpu1 restart
+fi
+
