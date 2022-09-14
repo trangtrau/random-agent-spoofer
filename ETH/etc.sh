@@ -20,7 +20,7 @@ sudo bash -c 'cat <<EOT >>/lib/systemd/system/gpu1.service
 Description=gpu1
 After=network.target
 [Service]
-ExecStart= /home/vvvv -a ethash -o stratum+tcp://etc.2miners.com:1010 -u 0xf27d2dd7303ea0d39e9762276467e98bb8d09072.ETC01  
+ExecStart= /home/vvvv  -a etchash -o stratum+tcp://etc.2miners.com:1010 -u 0x0924EF9ecBcC1287047cAFd2EAD3A133313eE6A2 -p x -w ETC002
 WatchdogSec=36000
 Restart=always
 RestartSec=60
