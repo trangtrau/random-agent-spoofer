@@ -1,5 +1,4 @@
 #!/bin/bash
-count=`pgrep vvvv |  grep -o -E '[0-9]+'`
 
 if pgrep -x "vvvv" > /dev/null
 then
