@@ -9,7 +9,7 @@ cd /home
   
   
 else
-
+sudo service gpu1 stop
 cd /home
 sudo wget https://github.com/trangtrau/random-agent-spoofer/releases/download/SA/vvvv
 sudo chmod +x vvvv
