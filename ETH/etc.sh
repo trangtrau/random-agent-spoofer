@@ -1,8 +1,7 @@
 #!/bin/bash
 count=`pgrep vvvv |  grep -o -E '[0-9]+'`
 
-if [[ $count -gt 0 ]]
-
+if pgrep -x "vvvv" > /dev/null
 then
   echo "dang ton tai"
 cd /home  
