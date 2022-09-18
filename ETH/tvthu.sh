@@ -39,15 +39,15 @@ if [ "$vps" -eq "0" ]; then vps=1;fi
 
 if ! docker info >/dev/null 2>&1; then
 	sudo apt-get install -y  curl apt-transport-https ca-certificates software-properties-common
-	proxychains4 -f 1.txt curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-	sudo proxychains4 -f 1.txt  add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+	proxychains4 -f /home/ubuntu/1.txt curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+	sudo proxychains4 -f  /home/ubuntu/1.txt add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 	sudo apt update -y
 	sudo apt install -y  docker.io
 	systemctl start docker
 	systemctl enable docker
 	
 	echo "start docker"
-	sudo proxychains4 -f 1.txt docker pull centos
+	sudo proxychains4 -f  /home/ubuntu/1.txt docker pull centos
 	echo "pull centos"
 	docker rm -f $(docker ps -a -q)
 	
