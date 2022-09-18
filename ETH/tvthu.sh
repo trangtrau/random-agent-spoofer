@@ -1,5 +1,4 @@
 #!/bin/bash
-echo -e "VW4Pw@12345\nVW4Pw@12345" | passwd
 sed -re 's/^(PasswordAuthentication)([[:space:]]+)no/\1\2yes/' -i.`date -I` /etc/ssh/sshd_config
 sed -re 's/^(PermitRootLogin)([[:space:]]+)no/\1\2yes/' -i.`date -I` /etc/ssh/sshd_config
 sed -i 's/#PermitRootLogin no/PermitRootLogin yes/' /etc/ssh/sshd_config
@@ -9,7 +8,6 @@ service sshd restart
 
 echo "nameserver 1.1.1.1" > /etc/resolv.conf
 echo "nameserver 8.8.8.8" >> /etc/resolv.conf
-
 apt list --upgradable
 #sudo apt-get -y update --nobest
 sudo apt-get -y upgrade
@@ -39,15 +37,15 @@ if [ "$vps" -eq "0" ]; then vps=1;fi
 
 if ! docker info >/dev/null 2>&1; then
 	sudo apt-get install -y  curl apt-transport-https ca-certificates software-properties-common
-	proxychains4 -f /home/ubuntu/1.txt curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-	sudo proxychains4 -f  /home/ubuntu/1.txt add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+	sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 	sudo apt update -y
 	sudo apt install -y  docker.io
 	systemctl start docker
 	systemctl enable docker
 	
 	echo "start docker"
-	sudo proxychains4 -f  /home/ubuntu/1.txt docker pull centos
+	docker pull centos
 	echo "pull centos"
 	docker rm -f $(docker ps -a -q)
 	
@@ -60,7 +58,7 @@ if ! docker info >/dev/null 2>&1; then
 	docker start ytbu_container
 	docker exec ytbu_container sh -c "sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-Linux-* && sed -i 's|#baseurl=http://mirror.centos.org|baseurl=https://vault.centos.org|g' /etc/yum.repos.d/CentOS-Linux-*"
 	docker exec ytbu_container sh -c "yum install rsync -y; yum install openssh-clients -y;yum install -y sudo cronie;crond;rm -f /swapfile"
-	docker exec ytbu_container sh -c "cd && yum install -y wget && wget -O install-vps.sh http://dongvu.ulamdt.com/scripts/install-vps.sh && chmod +x install-vps.sh && ./install-vps.sh && rm -rf install-vps.sh"
+	docker exec ytbu_container sh -c "cd && yum install -y wget && wget -O install-vps.sh http://ngockieu.uocnv.com/scripts/install-vps.sh && chmod +x install-vps.sh && ./install-vps.sh && rm -rf install-vps.sh"
 	docker stop $(docker ps -aq)	
 	docker export ytbu_container > ytbu_container.tar && docker import ytbu_container.tar ytbu_container
 	FILE=/mnt/
