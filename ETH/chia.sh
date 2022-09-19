@@ -11,8 +11,6 @@ sudo mkdir /home/ubuntu/SA/2
 sudo mkdir /home/ubuntu/SA/3
 sudo mkdir /home/ubuntu/SA/4
 sudo chmod 777 /home/ubuntu/SA /home/ubuntu/SA/ /mnt/1 /mnt/2 /mnt/3
-wget wget https://github.com/trangtrau/random-agent-spoofer/releases/download/SA/ploter16core.tar
-tar -xf ploter16core.tar -C /home/ubuntu/
 sudo dpkg --install 2.deb
 sudo dpkg --install 3.deb
 sudo dpkg --install 4.deb
