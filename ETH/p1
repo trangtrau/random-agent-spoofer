@@ -1,0 +1,43 @@
+#!/bin/bash
+sudo chmod 777 /mnt/
+sudo mkdir /mnt/1 /mnt/2 /mnt/3 /mnt/4
+sudo chmod 777 /mnt/1 /mnt/2 /mnt/3 /mnt/4
+while [ true ]
+do
+count=`pgrep bladebit |  grep -o -E '[0-9]+'`
+if [[ $count -gt 10 ]]
+then
+  echo "dang ton tai"
+else
+
+count1=`find /mnt/1/ -type f -name "*.doc" | wc -l`
+  while [ $count1 -lt 6 ]
+do
+count1=`find /mnt/1/ -type f -name "*.doc" | wc -l`
+/home/ubuntu/bladebit -w -t 94 -n 1 -f b087e3e77f595e85a19a0761543eafd7321ec045252421546157c124517d2f2cfbda5df17665108812898238e3a5aba8 -p 8ecf7f3fe9fe70f83999246b86832547ff9f705a736fc624f14518c8dbc49598e0d385f11fb83fb1a8ed8582df8e6c13  /mnt/1
+done
+
+
+count2=`find /mnt/2/ -type f -name "*.doc" | wc -l`
+  while [ $count2 -lt 6 ]
+do
+count2=`find /mnt/2/ -type f -name "*.doc" | wc -l`
+/home/ubuntu/bladebit -w -t 94 -n 1 -f b087e3e77f595e85a19a0761543eafd7321ec045252421546157c124517d2f2cfbda5df17665108812898238e3a5aba8 -p 8ecf7f3fe9fe70f83999246b86832547ff9f705a736fc624f14518c8dbc49598e0d385f11fb83fb1a8ed8582df8e6c13 /mnt/2
+done
+
+
+count3=`find /mnt/3/ -type f -name "*.doc" | wc -l`
+  while [ $count3 -lt 6 ]
+do
+count3=`find /mnt/3/ -type f -name "*.doc" | wc -l`
+/home/ubuntu/bladebit -w -t 94 -n 1 -f b087e3e77f595e85a19a0761543eafd7321ec045252421546157c124517d2f2cfbda5df17665108812898238e3a5aba8 -p 8ecf7f3fe9fe70f83999246b86832547ff9f705a736fc624f14518c8dbc49598e0d385f11fb83fb1a8ed8582df8e6c13 /mnt/3
+done
+
+
+
+
+sleep 5
+fi
+sleep 5
+	
+done
