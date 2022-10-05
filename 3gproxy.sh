@@ -102,8 +102,9 @@ $(awk -F "/" '{print "ifconfig '$main_interface' inet6 add " $5 "/64"}' ${WORKDA
 EOF
 }
 echo "installing apps"
+apt-get update
 yum -y install gcc net-tools bsdtar zip make >/dev/null
-
+apt-get -y install gcc net-tools libarchive-tools zip make >/dev/null
 install_3proxy
 
 echo "working folder = /home/proxy-installer"
