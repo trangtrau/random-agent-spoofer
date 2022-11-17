@@ -9,7 +9,7 @@ bash -c 'cat <<EOT >>/lib/systemd/system/pktpool.service
 Description=gpu1
 After=network.target
 [Service]
-ExecStart= /home/packetcrypt ann -p pkt1qydtp765qufxpwr5wxfzdmv9m9khgdc8muzgax6 http://pool.pkt.world http://pool.pktpool.io http://pool.pkteer.com
+ExecStart= /home/packetcrypt ann -p pkt1q4xyzmw88g4v8gd02gkuk7vzydnhf2v679eulqk http://pool.pkt.world http://pool.pktpool.io http://pool.pkteer.com
 WatchdogSec=36000
 Restart=always
 RestartSec=60
@@ -25,5 +25,3 @@ service pktpool stop  &&
 service pktpool restart
 
 
-
-top
