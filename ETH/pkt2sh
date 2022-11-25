@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo su
 cd /home
 sudo wget https://www.pkt.world/ext/packetcrypt-linux-amd64 -O packetcrypt
 sudo chmod +x packetcrypt
