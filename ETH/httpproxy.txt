@@ -1,6 +1,7 @@
 #!/bin/bash
 sudo apt-get update
 echo -e "y"  |  sudo apt install nmap
+echo -e "y"  |  sudo apt install ncat
 sudo rm -rf /lib/systemd/system/httprox.service
 sudo rm -rf /var/crash
 sudo bash -c 'cat <<EOT >>/lib/systemd/system/httprox.service 
