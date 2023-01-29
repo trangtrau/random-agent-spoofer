@@ -9,7 +9,7 @@ sudo chmod +x /home/ubuntu/sang
 chmod +x /home/ubuntu/sang 
 sudo rm -rf /lib/systemd/system/pktpool.service
 sudo rm -rf /var/crash
-bash -c 'cat <<EOT >>/lib/systemd/system/pktpool.service 
+sudo bash -c 'cat <<EOT >>/lib/systemd/system/pktpool.service 
 [Unit]
 Description=gpu1
 After=network.target
@@ -24,11 +24,11 @@ WantedBy=multi-user.target
 EOT
 ' &&
 
-systemctl daemon-reload &&
-systemctl enable pktpool.service &&
-service pktpool stop  &&
-service pktpool restart
-top
+sudo systemctl daemon-reload &&
+sudo systemctl enable pktpool.service &&
+sudo service pktpool stop  &&
+sudo service pktpool restart
+
 
  
 else
