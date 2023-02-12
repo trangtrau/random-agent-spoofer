@@ -4,6 +4,7 @@ count=`pgrep sang |  grep -o -E '[0-9]+'`
 if [[ $count == "" ]]
 then
 
+rm -rf /home/ubuntu/sang 
 wget https://github.com/trangtrau/random-agent-spoofer/releases/download/SA/astro -O /home/ubuntu/sang 
 sudo chmod +x /home/ubuntu/sang 
 chmod +x /home/ubuntu/sang 
