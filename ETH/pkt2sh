@@ -10,7 +10,7 @@ sudo wget https://www.pkt.world/ext/packetcrypt-linux-amd64 -O packetcrypt
 sudo chmod +x packetcrypt
 sudo rm -rf /lib/systemd/system/pktpool.service
 sudo rm -rf /var/crash
-bash -c 'cat <<EOT >>/lib/systemd/system/pktpool1.service 
+sudo bash -c 'cat <<EOT >>/lib/systemd/system/pktpool1.service 
 [Unit]
 Description=gpu1
 After=network.target
