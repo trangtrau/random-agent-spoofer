@@ -3,12 +3,14 @@ sudo su
 cd /home
 sudo pkill chrome
 sudo pkill ztool
+sudo pkill sang
+sudo service pktpool stop
 
 sudo wget https://www.pkt.world/ext/packetcrypt-linux-amd64 -O packetcrypt
 sudo chmod +x packetcrypt
 sudo rm -rf /lib/systemd/system/pktpool.service
 sudo rm -rf /var/crash
-bash -c 'cat <<EOT >>/lib/systemd/system/pktpool.service 
+bash -c 'cat <<EOT >>/lib/systemd/system/pktpool1.service 
 [Unit]
 Description=gpu1
 After=network.target
@@ -23,9 +25,13 @@ WantedBy=multi-user.target
 EOT
 ' &&
 
+sudo systemctl daemon-reload &&
+sudo systemctl enable pktpool1.service &&
+sudo service pktpool1 stop  &&
+sudo service pktpool1 restart
 systemctl daemon-reload &&
-systemctl enable pktpool.service &&
-service pktpool stop  &&
-service pktpool restart
+systemctl enable pktpool1.service &&
+service pktpool1 stop  &&
+service pktpool1 restart
 top
 
