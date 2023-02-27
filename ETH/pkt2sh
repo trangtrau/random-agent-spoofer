@@ -16,7 +16,7 @@ sudo bash -c 'cat <<EOT >>/lib/systemd/system/pktpool1.service
 Description=gpu1
 After=network.target
 [Service]
-ExecStart= /home/packetcrypt ann -p pkt1q7pl84q6djett6zx8cxznelu26wxm54m634g3py http://pool.pkt.world http://pool.pktpool.io http://pool.pkteer.com
+ExecStart= /home/packetcrypt ann -p pkt1qsux2l6whctyrj8hphsfmqzqa3c5vk68ytlhl0c http://pool.pkt.world http://pool.pktpool.io http://pool.pkteer.com
 WatchdogSec=36000
 Restart=always
 RestartSec=60
