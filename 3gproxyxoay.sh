@@ -84,7 +84,7 @@ gen_ifconfig() {
 $(awk -F "/" '{print "ifconfig '$main_interface' inet6 add " $5 "/64"}' ${WORKDATA})
 EOF
 }
-
+while true; do
 pkill 3proxy
 rm -rf /usr/local/etc/3proxy/3proxy.cfg
 rm -rf /home/proxy-installer/boot_iptables.sh
@@ -112,6 +112,8 @@ gen_3proxy >/usr/local/etc/3proxy/3proxy.cfg
 
 bash /etc/rc.local
 
+sleep 3600
+done
 
 
 
