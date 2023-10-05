@@ -4,9 +4,7 @@ Invoke-WebRequest -Uri $url -OutFile "$downloadPath\CSANGXMRIG.zip"
 
 $destinationPath = "C:\CSANGXMRIG" 
 Expand-Archive -Path $downloadPath -DestinationPath $destinationPath -Force
-
 Start-Sleep -Seconds 2
-
 Set-Location -Path "C:\AutoRclone-master"
 $userName = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
 $userName = $userName -replace "^.*\\", ""
@@ -19,7 +17,6 @@ pause
 $batContent | Set-Content -Path (Join-Path -Path $folderPath -ChildPath "van.bat") -Force
 
 New-Item -Path "$env:USERPROFILE\Desktop\Service_OK.dat" -ItemType File
-
 Start-Process -FilePath "nssm.exe" -ArgumentList "install CHIVES `"$folderPath\van.bat`""
 Start-Sleep -Seconds 1
 Start-Process -FilePath "nssm.exe" -ArgumentList "start CHIVES"
