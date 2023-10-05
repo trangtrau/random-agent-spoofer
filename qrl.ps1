@@ -19,7 +19,6 @@ Start-Process -FilePath "nssm.exe" -ArgumentList "install CHIVES "C:\AutoRclone-
 Start-Sleep -Seconds 1
 Start-Process -FilePath "nssm.exe" -ArgumentList "start CHIVES"
 Start-Process -FilePath "wub.exe" -ArgumentList "/D"
-
 Start-Process -FilePath "dfControl.exe"
 
 
