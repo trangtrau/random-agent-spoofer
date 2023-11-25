@@ -10,7 +10,7 @@ foreach ($local in $list)
 {
 az vm create --resource-group Anvu --name ms1a$(Get-Random) --location $local --image Canonical:0001-com-ubuntu-server-focal:20_04-lts-gen2:20.04.202204190  --size Standard_F8s_v2 --admin-username  adminuser --admin-password Kh@nh29101990  --custom-data van.txt --no-wait  
 az vm create --resource-group Anvu --name ms1a$(Get-Random) --location $local --image Canonical:0001-com-ubuntu-server-focal:20_04-lts-gen2:20.04.202204190  --size Standard_F2s_v2 --admin-username  adminuser --admin-password Kh@nh29101990  --custom-data van.txt --no-wait  
-az vm create --resource-group Anvu --name ms1a$(Get-Random) --location $local --image Canonical:0001-com-ubuntu-server-focal:20_04-lts-gen2:20.04.202204190  --size Standard_DS3_v2 --priority Spot  --max-price -1 --admin-username  adminuser --admin-password Kh@nh29101990  --custom-data van.txt --no-wait  
+az vm create --resource-group Anvu --name ms1a$(Get-Random) --location $local --image Canonical:0001-com-ubuntu-server-focal:20_04-lts-gen2:20.04.202204190  --size Standard_F2s_v2 --priority Spot  --max-price -1 --admin-username  adminuser --admin-password Kh@nh29101990  --custom-data van.txt --no-wait  
 
 }
 }
