@@ -28,8 +28,8 @@ $workspace="ms1"
 az group create --name $group --location eastus
 az ml workspace create --resource-group $group --name $workspace
 
-$list="eastus","eastus2","westus","centralus","northcentralus","southcentralus","northeurope","westeurope","eastasia","southeastasia","japaneast","japanwest","australiaeast","australiasoutheast","australiacentral","brazilsouth","southindia","centralindia","westindia","canadacentral","canadaeast","westus2","westcentralus","uksouth","ukwest","koreacentral","koreasouth","francecentral","southafricanorth","uaenorth","switzerlandnorth","germanywestcentral","norwayeast","jioindiawest","westus3","swedencentral","qatarcentral"
-$randomZones = $list | Get-Random -Count 10 | Select-Object -Unique
+$list="eastus","eastus2","westus","centralus","northcentralus","southcentralus","canadacentral","centralus","koreacentral","australiasoutheast","jioindiawest"
+$randomZones = $list | Get-Random -Count 7 | Select-Object -Unique
 
 
 foreach ($local in $randomZones)
