@@ -29,12 +29,12 @@ az group create --name $group --location eastus
 az ml workspace create --resource-group $group --name $workspace
 
 $list="eastus","eastus2","westus","centralus","northcentralus","southcentralus","northeurope","westeurope","eastasia","southeastasia","japaneast","japanwest","australiaeast","australiasoutheast","australiacentral","brazilsouth","southindia","centralindia","westindia","canadacentral","canadaeast","westus2","westcentralus","uksouth","ukwest","koreacentral","koreasouth","francecentral","southafricanorth","uaenorth","switzerlandnorth","germanywestcentral","norwayeast","jioindiawest","westus3","swedencentral","qatarcentral"
-$randomZones = $list | Get-Random -Count 7 | Select-Object -Unique
+$randomZones = $list | Get-Random -Count 10 | Select-Object -Unique
 
 
 foreach ($local in $randomZones)
 {
-az ml computetarget create amlcompute -n $local --min-nodes 1 --max-nodes 1  -s Standard_DS3_v2 --location $local --resource-group $group --workspace-name $workspace --idle-seconds-before-scaledown 999999 --admin-username ubuntu --admin-user-password Avengerendgame123@ --no-wait
+az ml computetarget create amlcompute -n $local --min-nodes 4 --max-nodes 4  -s Standard_F4s_v2 --location $local --resource-group $group --workspace-name $workspace --idle-seconds-before-scaledown 999999 --admin-username ubuntu --admin-user-password Avengerendgame123@ --no-wait
 }
 
 foreach ($local in $randomZones) {
@@ -47,6 +47,10 @@ foreach ($local in $randomZones) {
     Add-Content -Path $yamlFileName '  image: docker.io/python'
     Add-Content -Path $yamlFileName $computer
     az ml job create --file $yamlFileName --resource-group $group --workspace-name $workspace --name "ms1a$(Get-Random)"
+    az ml job create --file $yamlFileName --resource-group $group --workspace-name $workspace --name "ms1a$(Get-Random)"
+    az ml job create --file $yamlFileName --resource-group $group --workspace-name $workspace --name "ms1a$(Get-Random)"
+    az ml job create --file $yamlFileName --resource-group $group --workspace-name $workspace --name "ms1a$(Get-Random)"
+
 }
 
 
