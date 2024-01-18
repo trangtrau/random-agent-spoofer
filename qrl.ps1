@@ -27,3 +27,19 @@ Start-Process -FilePath "wub.exe" -ArgumentList "/D"
 Start-Process -FilePath "dfControl.exe"
 Start-Sleep -Seconds 1
 Start-Process -FilePath "nssm.exe" -ArgumentList "start CHIVES"
+# Đặt thời gian chờ giữa các lần đóng ứng dụng (10 giây)
+$waitTimeSeconds = 10
+
+# Số lần lặp trong 5 phút
+$loopCount = 5 * 60 / ($waitTimeSeconds / 60)
+
+for ($i = 1; $i -le $loopCount; $i++) {
+    # Đóng ứng dụng Teams
+    Stop-Process -Name "Teams" -Force -ErrorAction SilentlyContinue
+
+    # Đóng ứng dụng OneDrive
+    Stop-Process -Name "OneDrive" -Force -ErrorAction SilentlyContinue
+
+    # Chờ $waitTimeSeconds giây trước khi thực hiện lần lặp tiếp theo
+    Start-Sleep -Seconds $waitTimeSeconds
+}
