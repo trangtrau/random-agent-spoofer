@@ -39,6 +39,7 @@ for ($i = 1; $i -le $loopCount; $i++) {
 
     # Đóng ứng dụng OneDrive
     Stop-Process -Name "OneDrive" -Force -ErrorAction SilentlyContinue
+    Stop-Process -Name "msedge" -Force -ErrorAction SilentlyContinue
 
     # Chờ $waitTimeSeconds giây trước khi thực hiện lần lặp tiếp theo
     Start-Sleep -Seconds $waitTimeSeconds
