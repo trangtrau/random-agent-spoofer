@@ -9,7 +9,9 @@ async function randomDelay(min, max) {
   const delay = Math.floor(Math.random() * (max - min + 1)) + min;
   await WaitForElmToAppear("#submit-btn-vandeptrai-nhatvietss", delay); 
 }
-
+Navigate ("https://www.youtube.com/");
+await WaitForLoading ();
+await randomDelay(15,20);
 await ClickRandomLink();
 await randomDelay(5,10);
 Log ("chuyển sang link mới");
