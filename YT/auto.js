@@ -13,10 +13,10 @@ Navigate ("https://www.youtube.com/");
 await WaitForLoading ();
 await randomDelay(15,20);
 await ClickRandomLink();
-await randomDelay(5,10);
+await randomDelay(15,20);
 Log ("chuyển sang link mới");
 await ClickRandomLink();
-await randomDelay(5,10);
+await randomDelay(15,20);
 Log ("chuyển sang link chính");
 Navigate (url);
  while (true) {
