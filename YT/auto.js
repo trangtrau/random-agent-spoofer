@@ -19,7 +19,8 @@ await ClickRandomLink();
 await randomDelay(5,20);
 Log ("chuyển sang link chính");
 Navigate (url);
- while (true) {
+  
+while (true) {
      const newUrl = await HttpRequest("https://envitech.fun/link.txt");
 
         if (newUrl !== url) {
@@ -29,7 +30,10 @@ Navigate (url);
         }
         await randomDelay(55,120);
      
- }
+
+
+
+}
  
     
     
