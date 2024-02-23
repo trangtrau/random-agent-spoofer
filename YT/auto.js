@@ -11,20 +11,19 @@ async function Login(mail,pass,mailKp) {
     const pwTextboxSelector = '[name="Passwd"]';
     
     Log("wait for mail textbox");
-    await WaitForElmToAppear (userTextboxSelector);
-    
-     await randomDelay(2,5);
+    await WaitForElement(userTextboxSelector, (elm) => !!elm, 10);
+    await randomDelay(2,5);
     await ClickBySelector (userTextboxSelector);
     Log("typing mail");
     await Typing (mail + "\r");
     
     Log("wait for pw textbox");
-    await WaitForElmToAppear (pwTextboxSelector);
-     await randomDelay(2,5);
+    await WaitForElement(pwTextboxSelector, (elm) => !!elm, 5);
+    await randomDelay(2,5);
     await ClickBySelector (pwTextboxSelector);
     Log("typing pass");
     await Typing (pass + "\r");
-     await randomDelay(5,10);
+    await randomDelay(5,10);
     await WaitForLoading ();
     
  }
