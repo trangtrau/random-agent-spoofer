@@ -50,7 +50,7 @@ async function checkLogin() {
     Log(whatNext);
     
     if (!whatNext) {
-    await Navigate("https://myaccount.google.com/signinoptions/two-step-verification&hl=en-US");
+    await Navigate("https://myaccount.google.com/signinoptions/two-step-verification");
     return false;
 }
         switch (whatNext) {
@@ -169,7 +169,7 @@ Log (url)
 
 
 
-await Navigate("https://myaccount.google.com/signinoptions/two-step-verification&hl=en-US");
+await Navigate("https://myaccount.google.com/signinoptions/two-step-verification");
 await WaitForLoading ();
 
 
