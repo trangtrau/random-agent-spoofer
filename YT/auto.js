@@ -50,7 +50,7 @@ async function checkLogin() {
     Log(whatNext);
     
     if (!whatNext) {
-    await Navigate("https://myaccount.google.com/signinoptions/two-step-verification");
+    await Navigate("https://myaccount.google.com/signinoptions/two-step-verification&hl=en-US");
     return false;
 }
         switch (whatNext) {
@@ -113,7 +113,9 @@ async function checkLogin() {
             }
             
             case "vermail": {
-                await ClickByXpath(`//div[contains(text(),'Confirm your recovery email')]`);
+                
+
+                await ClickByXpath(`//div[contains(text(), 'Xác nhận email khôi phục') or contains(text(), 'Confirm your recovery email')]`);
                 await WaitForElmToAppear(`input[aria-label="Enter recovery email address"]`);
                 await Typing(getMail.recovery);
                 await ClickByXpath(`//span[contains(text(),'Next')]`);
@@ -167,7 +169,7 @@ Log (url)
 
 
 
-await Navigate("https://myaccount.google.com/signinoptions/two-step-verification");
+await Navigate("https://myaccount.google.com/signinoptions/two-step-verification&hl=en-US");
 await WaitForLoading ();
 
 
