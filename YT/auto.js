@@ -190,8 +190,24 @@ await WaitForLoading ();
         attempts++;
     }
 
+// Tạo mảng các đường dẫn
+const urls = [
+  "https://www.yahoo.com/news",
+  "https://vi.wikipedia.org/",
+  "https://finance.yahoo.com/",
+  "https://news.yahoo.com/",
+  "https://sports.yahoo.com",
+  "https://www.yahoo.com/lifestyle/",
+  "https://he.net/",
+  "http://www.axu.tm/"
+];
 
-Navigate ("https://www.youtube.com/");
+// Chọn ngẫu nhiên một đường dẫn từ mảng
+const randomUrl = urls[Math.floor(Math.random() * urls.length)];
+
+// Xuất đường dẫn ngẫu nhiên
+console.log(randomUrl);
+Navigate (randomUrl);
 await WaitForLoading ();
 await randomDelay(5,20);
 await ClickRandomLink();
@@ -208,6 +224,8 @@ while (true) {
         if (newUrl !== url) {
             url = newUrl;
             console.log("URL mới đã được tìm thấy:", url);
+            await ClickRandomLink();
+            await randomDelay(5,30);
             Navigate (url);
         }
         await randomDelay(55,120);
