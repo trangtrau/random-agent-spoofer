@@ -115,7 +115,7 @@ async function checkLogin() {
             case "vermail": {
                 await ClickByXpath(`//div[contains(text(),'Confirm your recovery email')]`);
                 await WaitForElmToAppear(`input[aria-label="Enter recovery email address"]`);
-                await Typing(mailKp);
+                await Typing(getMail.recovery);
                 await ClickByXpath(`//span[contains(text(),'Next')]`);
                  let ipv6 = await HttpRequest(`http://ipv6-test.com/api/myip.php`);
                 Log (ipv6);
