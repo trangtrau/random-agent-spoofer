@@ -1,11 +1,7 @@
 
 (async function(){
-const phones = [];
-await WaitForLoading ();
-let getMail = null;
-const linkApi = 'https://envitech.fun/api.php?key=api_key_hoanglong&'
 
-
+//khai báo hàm
 async function Login(mail,pass,mailKp) {
     Log("Login");
     //await WaitForLoading ();
@@ -155,6 +151,18 @@ async function randomDelay(min, max) {
   await WaitForElmToAppear("#submit-btn-vandeptrai-nhatvietss", delay); 
 }
 
+//kết thúc khai báo hàm
+//RUN CODE
+
+const phones = [];
+await WaitForLoading ();
+let getMail = null;
+const linkApi = 'https://envitech.fun/api.php?key=api_key_hoanglong&'
+let url = null ;
+url = await HttpRequest ("https://envitech.fun/link.txt");
+Log (url)
+
+
 
 await Navigate("https://myaccount.google.com/signinoptions/two-step-verification");
 await WaitForLoading ();
@@ -177,9 +185,6 @@ await WaitForLoading ();
         attempts++;
     }
 
-let url = null ;
-url = await HttpRequest ("https://envitech.fun/link.txt");
-Log (url)
 
 Navigate ("https://www.youtube.com/");
 await WaitForLoading ();
