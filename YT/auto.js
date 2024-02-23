@@ -5,7 +5,7 @@
 async function Login(mail,pass,mailKp) {
     Log("Login");
     //await WaitForLoading ();
-    await randomDelay (2000);
+    await randomDelay(2,5);
     
     const userTextboxSelector = "#identifierId";
     const pwTextboxSelector = '[name="Passwd"]';
@@ -13,18 +13,18 @@ async function Login(mail,pass,mailKp) {
     Log("wait for mail textbox");
     await WaitForElmToAppear (userTextboxSelector);
     
-    await randomDelay(2000);
+     await randomDelay(2,5);
     await ClickBySelector (userTextboxSelector);
     Log("typing mail");
     await Typing (mail + "\r");
     
     Log("wait for pw textbox");
     await WaitForElmToAppear (pwTextboxSelector);
-    await randomDelay(2000);
+     await randomDelay(2,5);
     await ClickBySelector (pwTextboxSelector);
     Log("typing pass");
     await Typing (pass + "\r");
-    await randomDelay(5000);
+     await randomDelay(5,10);
     await WaitForLoading ();
     
  }
@@ -134,6 +134,7 @@ async function WaitForFirstElement2(checkConds, timeout) {
         const selector = checkConds[key];
         try {
             const checkExit =  await WaitForElement(selector, (elm) => !!elm, timeout);
+            await randomDelay(1,2);
             if(checkExit){return key;}
         
             
