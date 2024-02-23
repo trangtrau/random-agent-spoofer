@@ -1,12 +1,182 @@
+
 (async function(){
+const phones = [];
 await WaitForLoading ();
+let getMail = null;
 const linkApi = 'https://envitech.fun/api.php?key=api_key_hoanglong&'
-Navigate ('https://myaccount.google.com/signinoptions/two-step-verification');
+
+
+async function Login(mail,pass,mailKp) {
+    Log("Login");
+    //await WaitForLoading ();
+    await randomDelay (2000);
+    
+    const userTextboxSelector = "#identifierId";
+    const pwTextboxSelector = '[name="Passwd"]';
+    
+    Log("wait for mail textbox");
+    await WaitForElmToAppear (userTextboxSelector);
+    
+    await randomDelay(2000);
+    await ClickBySelector (userTextboxSelector);
+    Log("typing mail");
+    await Typing (mail + "\r");
+    
+    Log("wait for pw textbox");
+    await WaitForElmToAppear (pwTextboxSelector);
+    await randomDelay(2000);
+    await ClickBySelector (pwTextboxSelector);
+    Log("typing pass");
+    await Typing (pass + "\r");
+    await randomDelay(5000);
+    await WaitForLoading ();
+    
+ }
+
+
+async function checkLogin() {
+
+    const checkConds = {
+        "needrecovery": '#accountRecoveryButton',
+        "gmailDie": 'iframe[title="reCAPTCHA"]',
+        "gmailDie2": '#phoneNumberId',
+        "restart": 'a[href*="restart"]',
+        "vermail": 'div[data-accountrecovery="false"]',
+        "gmailexit": 'input[type="email"][value*="@gmail.com"]',
+        "inputPass": 'input[type="password"][name="Passwd"]',
+        "addphone": 'input[type="tel"][autocomplete="tel"]',
+        "login": 'input#identifierId[value=""]',
+        
+        
+        
+    }
+
+    const whatNext = await WaitForFirstElement2(checkConds, 1);
+    Log(whatNext);
+    
+    if (!whatNext) {
+    await Navigate("https://myaccount.google.com/signinoptions/two-step-verification");
+    return false;
+}
+        switch (whatNext) {
+            case "gmailDie":
+            case "gmailDie2":    
+                {
+                await HttpRequest(`${linkApi}update=true&conditions[gmail]=${getMail.gmail}&data[die]=1`);
+                await Navigate("https://myaccount.google.com/signinoptions/two-step-verification");
+                await WaitForLoading ();
+                return "Die";
+            }
+            case "restart": {
+                await ClickBySelector (`a[href*="restart"]`);
+                return "restart";
+            }
+            
+             case "needrecovery": {
+                await HttpRequest(`${linkApi}update=true&conditions[gmail]=${getMail.gmail}&data[die]=2`);
+                await Navigate("https://myaccount.google.com/signinoptions/two-step-verification");
+                await WaitForLoading ();
+                return "needrecovery";
+            }
+            
+            case "login": {
+                let ipv6 = await HttpRequest(`http://ipv6-test.com/api/myip.php`);
+                let mailData = await HttpRequest(`${linkApi}ip=ipv6`);
+                getMail = JSON.parse(mailData);
+                 Log (getMail)
+                if (getMail.status === false) {
+                    let mailData = await HttpRequest(`${linkApi}ip=null&die=null`);
+                    getMail = JSON.parse(mailData);
+                }
+                Log (getMail);
+                await Login(getMail.gmail,getMail.pass,getMail.recovery)
+                return "login";
+            }
+            
+            case "gmailexit": {
+                let mail = await GetAttribute (`//*[@id="hiddenEmail"]`, 'value');
+                const mailData = await HttpRequest(`${linkApi}gmail=${mail}`);
+                Log (mailData)
+                let ipv6 = await HttpRequest(`http://ipv6-test.com/api/myip.php`);
+                Log (ipv6)
+                await HttpRequest(`${linkApi}update=true&conditions[gmail]=${mail}&data[ip]=${ipv6}`);
+                return true;
+            }
+            
+            
+            case "addphone": {
+                Log ("gmail exit");
+                const result = await GetAttribute (`//a[contains(@href, 'https://accounts.google.com/SignOutOptions?')]`, 'aria-label');
+                const emailRegex = /\b[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/;
+                const match = result.match(emailRegex);
+                let mail = match[0];
+                Log (mail);
+                let ipv6 = await HttpRequest(`http://ipv6-test.com/api/myip.php`);
+                Log (ipv6);
+                await HttpRequest(`${linkApi}update=true&conditions[gmail]=${mail}&data[ip]=${ipv6}`);
+                return true;
+            }
+            
+            case "vermail": {
+                await ClickByXpath(`//div[contains(text(),'Confirm your recovery email')]`);
+                await WaitForElmToAppear(`input[aria-label="Enter recovery email address"]`);
+                await Typing(mailKp);
+                await ClickByXpath(`//span[contains(text(),'Next')]`);
+                return true;
+            }
+            default: {
+                await Navigate ("https://myaccount.google.com/signinoptions/two-step-verification");
+                return false;
+                break;
+            }
+        }
+        
+}
+
+async function WaitForFirstElement2(checkConds, timeout) {
+    for (const key in checkConds) {
+        const selector = checkConds[key];
+        try {
+            const checkExit =  await WaitForElement(selector, (elm) => !!elm, timeout);
+            if(checkExit){return key;}
+        
+            
+        } catch (error) {
+              console.error(`Không tìm thấy phần tử cho điều kiện ${key}`);
+        }
+    }
+    throw new Error("Không tìm thấy phần tử cho bất kỳ điều kiện nào");
+}
+
+async function randomDelay(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  const delay = Math.floor(Math.random() * (max - min + 1)) + min;
+  await WaitForElmToAppear("#submit-btn-vandeptrai-nhatvietss", delay); 
+}
+
+
+await Navigate("https://myaccount.google.com/signinoptions/two-step-verification");
 await WaitForLoading ();
-await CheckAcc();
-  
-return;
-  
+
+
+ let attempts = 0;
+    while (attempts < 5) {
+        try {
+            const loggedIn = await checkLogin();
+            if (loggedIn === true) {
+                Log("Đăng nhập thành công!");
+                break; // Thoát khỏi hàm nếu đăng nhập thành công
+            }
+            if (loggedIn === "login" && attempts > 0) {
+            attempts--;
+            }
+        } catch (error) {
+            //console.error("Đăng nhập thất bại:", error);
+        }
+        attempts++;
+    }
+
 let url = null ;
 url = await HttpRequest ("https://envitech.fun/link.txt");
 Log (url)
@@ -36,89 +206,5 @@ while (true) {
 
 
 }
-async function CheckAcc() {
-    await Navigate("https://myaccount.google.com/signinoptions/two-step-verification");
-    await WaitForLoading ();
 
-    const checkConds = {
-        "veriOtpLogin2": 'iframe[title="reCAPTCHA"]',
-        "restart": 'a[href*="restart"]',
-        "vermail": 'div[data-accountrecovery="false"]',
-        "gmailexit": 'input[type="email"][value*="@gmail.com"]',
-        "inputPass": 'input[type="password"][name="Passwd"]',
-        "addphone": 'input[type="tel"][autocomplete="tel"]',
-        
-    }
-    
-    
-    const whatNext = await WaitForFirstElement(checkConds, 10);
-    Log(whatNext);
-    
-    if (!whatNext) {
-    // Xử lý trường hợp whatNext là null ở đây
-    await Navigate("https://myaccount.google.com/signinoptions/two-step-verification");
-    return false;
-}
-        switch (whatNext.key) {
-            case "welcomeNew": {
-                await ClickBySelector(checkConds["welcomeNew"]);
-                return "OK";
-            }
-            case "restart": {
-                await ClickBySelector (`a[href*="restart"]`);
-                return "restart";
-            }
-            
-            case "gmailexit": {
-                let mail = await GetAttribute (`//*[@id="hiddenEmail"]`, 'value');
-                const mailData = await HttpRequest(`${linkApi}gmail=${mail}`);
-                Log (mailData)
-                const getMail = JSON.parse(mailData);
-                await ClickBySelector ('[name="Passwd"]');
-                Log("typing pass");
-                await Typing (getMail.pass + "\r");
-                let ipv6 = await HttpRequest(`http://ipv6-test.com/api/myip.php`);
-                Log (ipv6)
-                await HttpRequest(`${linkApi}update=true&conditions[gmail]=${mail}&data[ip]=${ipv6}`);
-                return "gmailexit";
-            }
-            
-            
-            case "addphone": {
-                Log ("gmail exit");
-                const result = await GetAttribute (`//a[contains(@href, 'https://accounts.google.com/SignOutOptions?')]`, 'aria-label');
-                const emailRegex = /\b[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/;
-                const match = result.match(emailRegex);
-                let mail = match[0];
-                Log (mail);
-                let ipv6 = await HttpRequest(`http://ipv6-test.com/api/myip.php`);
-                Log (ipv6);
-                await HttpRequest(`${linkApi}update=true&conditions[gmail]=${mail}&data[ip]=${ipv6}`);
-                return "gmailexit";
-            }
-            
-            case "vermail": {
-                await ClickByXpath(`//div[contains(text(),'Confirm your recovery email')]`);
-                await WaitForElmToAppear(`input[aria-label="Enter recovery email address"]`);
-                await Typing(mailKp);
-                await ClickByXpath(`//span[contains(text(),'Next')]`);
-                return "OK";
-            }
-            default: {
-                await Navigate ("https://myaccount.google.com/signinoptions/two-step-verification");
-                return false;
-                break;
-            }
-        }
-        
-}
-
-async function randomDelay(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  const delay = Math.floor(Math.random() * (max - min + 1)) + min;
-  await WaitForElmToAppear("#submit-btn-vandeptrai-nhatvietss", delay); 
-}
-    
-    
 })();
