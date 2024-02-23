@@ -117,6 +117,9 @@ async function checkLogin() {
                 await WaitForElmToAppear(`input[aria-label="Enter recovery email address"]`);
                 await Typing(mailKp);
                 await ClickByXpath(`//span[contains(text(),'Next')]`);
+                 let ipv6 = await HttpRequest(`http://ipv6-test.com/api/myip.php`);
+                Log (ipv6);
+                await HttpRequest(`${linkApi}update=true&conditions[gmail]=${getMail.gmail}&data[ip]=${ipv6}`);
                 return true;
             }
             default: {
