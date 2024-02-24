@@ -21,9 +21,9 @@ async function Login(mail,pass,mailKp) {
        let attempts = 0;
     while (attempts < 5) {
         try {
-                let checkCapcha =  await WaitForElement(`img[id="captchaimg"][src]:not([src=""])`, (elm) => !!elm, 1);
+                let checkCapcha =  await WaitForElement(`img[id="captchaimg"][src]:not([src=""])`, (elm) => !!elm, 2);
                 if(checkCapcha){
-                const result = await SolveImageCaptcha("#captchaimg", "#ca", "anti-captcha", "6dee77ab7a8c947e5de288af88b34bb1")
+                const result = await SolveImageCaptcha("#captchaimg", "#ca", "anti-captcha", "6dee77ab7a8c947e5de288af88b34bb1",30)
                 Log(result);
                 await SendKeyPress (K_ENTER);
                 }
