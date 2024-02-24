@@ -18,6 +18,12 @@ async function Login(mail,pass,mailKp) {
     await Typing (mail + "\r");
     
     Log("wait for pw textbox");
+    let checkCapcha =  await WaitForElement(`img[id="captchaimg"][src]:not([src=""])`, (elm) => !!elm, 5);
+    if(checkCapcha){
+        const result = await SolveImageCaptcha("#captchaimg", "#ca", "anti-captcha", "6dee77ab7a8c947e5de288af88b34bb1")
+        Log(result);
+        await SendKeyPress (K_ENTER);
+    }
     await WaitForElement(pwTextboxSelector, (elm) => !!elm, 5);
     await randomDelay(2,5);
     await ClickBySelector (pwTextboxSelector);
