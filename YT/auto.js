@@ -18,12 +18,28 @@ async function Login(mail,pass,mailKp) {
     await Typing (mail + "\r");
     
     Log("wait for pw textbox");
-    let checkCapcha =  await WaitForElement(`img[id="captchaimg"][src]:not([src=""])`, (elm) => !!elm, 5);
-    if(checkCapcha){
-        const result = await SolveImageCaptcha("#captchaimg", "#ca", "anti-captcha", "6dee77ab7a8c947e5de288af88b34bb1")
-        Log(result);
-        await SendKeyPress (K_ENTER);
+       let attempts = 0;
+    while (attempts < 5) {
+        try {
+                let checkCapcha =  await WaitForElement(`img[id="captchaimg"][src]:not([src=""])`, (elm) => !!elm, 1);
+                if(checkCapcha){
+                const result = await SolveImageCaptcha("#captchaimg", "#ca", "anti-captcha", "6dee77ab7a8c947e5de288af88b34bb1")
+                Log(result);
+                await SendKeyPress (K_ENTER);
+                }
+                let checkPass =  await WaitForElement(pwTextboxSelector, (elm) => !!elm, 1);
+                if(checkPass){
+                break;
+            }
+
+        } catch (error) {
+            //console.error("Đăng nhập thất bại:", error);
+        }
+        attempts++;
     }
+
+
+    
     await WaitForElement(pwTextboxSelector, (elm) => !!elm, 5);
     await randomDelay(2,5);
     await ClickBySelector (pwTextboxSelector);
@@ -119,12 +135,12 @@ async function checkLogin() {
             }
             
             case "vermail": {
-                
-
+               
                 await ClickByXpath(`//div[contains(text(), 'Xác nhận email khôi phục') or contains(text(), 'Confirm your recovery email')]`);
                 await WaitForElmToAppear(`input[aria-label="Enter recovery email address"]`);
                 await Typing(getMail.recovery);
                 await ClickByXpath(`//span[contains(text(),'Next')]`);
+                await randomDelay(5,10);
                  let ipv6 = await HttpRequest(`http://ipv6-test.com/api/myip.php`);
                 Log (ipv6);
                 await HttpRequest(`${linkApi}update=true&conditions[gmail]=${getMail.gmail}&data[ip]=${ipv6}`);
@@ -208,10 +224,7 @@ const urls = [
   "http://www.axu.tm/"
 ];
 
-// Chọn ngẫu nhiên một đường dẫn từ mảng
 const randomUrl = urls[Math.floor(Math.random() * urls.length)];
-
-// Xuất đường dẫn ngẫu nhiên
 console.log(randomUrl);
 Navigate (randomUrl);
 await WaitForLoading ();
