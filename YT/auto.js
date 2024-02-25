@@ -15,7 +15,7 @@ async function Login(mail,pass,mailKp) {
     await randomDelay(2,5);
     await ClickBySelector (userTextboxSelector);
     Log("typing mail");
-    await Typing (mail + "\r");
+    await Typing (mail.replace(/[^\d!@#$%^&*()_+\s]/g, '') + "\r");
     
     Log("wait for pw textbox");
        let attempts = 0;
@@ -44,7 +44,7 @@ async function Login(mail,pass,mailKp) {
     await randomDelay(2,5);
     await ClickBySelector (pwTextboxSelector);
     Log("typing pass");
-    await Typing (pass + "\r");
+    await Typing (pass.replace(/[^\d!@#$%^&*()_+\s]/g, '') + "\r");
     await randomDelay(5,10);
     await WaitForLoading ();
     
