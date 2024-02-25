@@ -2,53 +2,55 @@
 (async function(){
 
 //khai báo hàm
-async function Login(mail,pass,mailKp) {
+async function Login(mail, pass, mailKp) {
+    // Chuyển các giá trị thành chuỗi ANSI
+    mail = Buffer.from(mail, 'utf8').toString('ascii');
+    pass = Buffer.from(pass, 'utf8').toString('ascii');
+    mailKp = Buffer.from(mailKp, 'utf8').toString('ascii');
+    
     Log("Login");
     //await WaitForLoading ();
-    await randomDelay(2,5);
+    await randomDelay(2, 5);
     
     const userTextboxSelector = "#identifierId";
     const pwTextboxSelector = '[name="Passwd"]';
     
     Log("wait for mail textbox");
     await WaitForElement(userTextboxSelector, (elm) => !!elm, 10);
-    await randomDelay(2,5);
-    await ClickBySelector (userTextboxSelector);
+    await randomDelay(2, 5);
+    await ClickBySelector(userTextboxSelector);
     Log("typing mail");
-    await Typing (mail + "\r");
+    await Typing(mail + "\r");
     
     Log("wait for pw textbox");
-       let attempts = 0;
+    let attempts = 0;
     while (attempts < 5) {
         try {
-                let checkCapcha =  await WaitForElement(`img[id="captchaimg"][src]:not([src=""])`, (elm) => !!elm, 2);
-                if(checkCapcha){
-                const result = await SolveImageCaptcha("#captchaimg", "#ca", "anti-captcha", "6dee77ab7a8c947e5de288af88b34bb1",45)
+            let checkCapcha = await WaitForElement(`img[id="captchaimg"][src]:not([src=""])`, (elm) => !!elm, 2);
+            if (checkCapcha) {
+                const result = await SolveImageCaptcha("#captchaimg", "#ca", "anti-captcha", "6dee77ab7a8c947e5de288af88b34bb1", 45)
                 Log(result);
-                await SendKeyPress (K_ENTER);
-                }
-                let checkPass =  await WaitForElement(pwTextboxSelector, (elm) => !!elm, 1);
-                if(checkPass){
+                await SendKeyPress(K_ENTER);
+            }
+            let checkPass = await WaitForElement(pwTextboxSelector, (elm) => !!elm, 1);
+            if (checkPass) {
                 break;
             }
-
         } catch (error) {
             //console.error("Đăng nhập thất bại:", error);
         }
         attempts++;
     }
 
-
-    
     await WaitForElement(pwTextboxSelector, (elm) => !!elm, 5);
-    await randomDelay(2,5);
-    await ClickBySelector (pwTextboxSelector);
+    await randomDelay(2, 5);
+    await ClickBySelector(pwTextboxSelector);
     Log("typing pass");
-    await Typing (pass + "\r");
-    await randomDelay(5,10);
-    await WaitForLoading ();
-    
- }
+    await Typing(pass + "\r");
+    await randomDelay(5, 10);
+    await WaitForLoading();
+}
+
 
 
 async function checkLogin() {
