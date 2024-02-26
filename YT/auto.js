@@ -70,7 +70,7 @@ async function Login() {
                 Log (getMail);
 
 		        await ClickBySelector (`input#identifierId[value=""]`);
-		        await Typing (getMail.gmail.trim() + "\r",1000,2000);
+		        await Typing (getMail.gmail.trim() + "\r",300,500);
 		        importUser = 1;
 		        await randomDelay(2,5);
                 break;
@@ -88,7 +88,7 @@ async function Login() {
                 } else {
                      Log ("Nhập Pass");
                      await ClickBySelector (`input[type="password"][name="Passwd"]`);
-                     await Typing (getMail.pass.trim() + "\r",1000,2000);
+                     await Typing (getMail.pass.trim() + "\r",300,500);
                      await randomDelay(2,5);
                 }
                 break;
@@ -110,7 +110,7 @@ async function Login() {
                 Log ("Nhập mail khôi phục");
                 await ClickByXpath(`//div[contains(text(), 'Xác nhận email khôi phục') or contains(text(), 'Confirm your recovery email')]`);
                 await WaitForElmToAppear(`input[aria-label="Enter recovery email address"]`);
-                await Typing(getMail.recovery,1000,2000);
+                await Typing(getMail.recovery,300,500);
                 await ClickByXpath(`//span[contains(text(),'Next')]`);
                 await randomDelay(10,15);
                 break;
