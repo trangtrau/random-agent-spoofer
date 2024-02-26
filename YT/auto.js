@@ -142,10 +142,7 @@ async function WaitForFirstElement2(checkConds, timeout) {
         const selector = checkConds[key];
         try {
             const checkExit =  await WaitForElement(selector, (elm) => !!elm, timeout);
-            await randomDelay(1,2);
             if(checkExit){return key;}
-        
-            
         } catch (error) {
               console.error(`Không tìm thấy phần tử cho điều kiện ${key}`);
         }
