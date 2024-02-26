@@ -157,7 +157,7 @@ await Navigate("https://myaccount.google.com/signinoptions/two-step-verification
 await WaitForLoading ();
 Log ("Check tình trạng login!");
 await Login();	
-
+/*
 Navigate (randomUrl);
 await WaitForLoading ();
 await randomDelay(5,10);
@@ -167,7 +167,7 @@ await randomDelay(5,10);
 Log ("Chuyển sang link ngẫu nhiên!");
 await ClickRandomLink();
 await randomDelay(5,10);
-	
+*/	
 
 
 Log ("Chuyển sang link youtube!");
