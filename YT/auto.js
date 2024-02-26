@@ -2,7 +2,7 @@
 (async function(){
 
 //khai báo hàm
-async function Login(mail,pass,mailKp) {
+async function Login() {
     Log("Login");
     	const checkConds = {
       	"recapcha": 'img[id="captchaimg"][src]:not([src=""])',
@@ -175,20 +175,19 @@ Log (url)
 const randomUrl = await HttpRequest("https://envitech.fun/link.php");
 Navigate (randomUrl);
 await WaitForLoading ();
-await randomDelay(5,20);
+await randomDelay(5,30);
 await ClickRandomLink();
-await randomDelay(5,20);
-Log ("chuyển sang link mới");
+await randomDelay(5,30);
 await ClickRandomLink();
-await randomDelay(5,20);
-Log ("chuyển sang link chính");
-
+await randomDelay(5,30);
 
 await Navigate("https://myaccount.google.com/signinoptions/two-step-verification");
 await WaitForLoading ();
+Log ("Check tình trạng login");
+await Login();	
 
-await login();
 
+Log ("chuyển sang link chính");
 Navigate (url);
 
 while (true) {
