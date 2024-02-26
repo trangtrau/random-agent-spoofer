@@ -186,7 +186,7 @@ await WaitForLoading ();
 let getMail = null;
 const linkApi = 'https://envitech.fun/api.php?key=api_key_hoanglong&'
 let url = null ;
-url = await HttpRequest ("https://envitech.fun/link.php?youtube");
+url = await HttpRequest ("https://envitech.fun/link.php?type=youtube");
 Log (url)
 
 const randomUrl = await HttpRequest("https://envitech.fun/link.php");
@@ -227,7 +227,7 @@ await WaitForLoading ();
 Navigate (url);
 
 while (true) {
-     const newUrl = await HttpRequest("https://envitech.fun/link.php?youtube");
+     const newUrl = await HttpRequest("https://envitech.fun/link.php?type=youtube");
 
         if (newUrl !== url) {
             url = newUrl;
