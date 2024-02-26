@@ -14,7 +14,7 @@ async function Login() {
         
         "addphone": 'input[type="tel"][autocomplete="tel"]',
     } 
-	
+    let importUser;
     let attempts = 0;
     while (attempts < 20) {
     const whatNext = await WaitForFirstElement2(checkConds, 0.5);
@@ -87,9 +87,23 @@ async function Login() {
                 Exit();
                 } else {
                      Log ("Nhập Pass");
-                     await ClickBySelector (`input[type="password"][name="Passwd"]`);
-                     await Typing (getMail.pass.trim() + "\r",100,200);
-                     await randomDelay(1,2);
+		     	const source = await GetSource();
+			const foundIndex = source.indexOf("Try again or click Forgot password to reset it");
+		     if (foundIndex !== -1) {
+			await HttpRequest(`${linkApi}update=true&conditions[gmail]=${getMail.gmail}&data[die]=3`);
+			let ipv6 = await HttpRequest(`http://ipv6-test.com/api/myip.php`);
+                	let mailData = await HttpRequest(`${linkApi}ip=${ipv6}`);
+                	getMail = JSON.parse(mailData);
+                	if (getMail.status === false) {  let mailData = await HttpRequest(`${linkApi}ip=null&die=null`);      getMail = JSON.parse(mailData);          }
+                	Log (getMail);
+			await Navigate("https://myaccount.google.com/signinoptions/two-step-verification?hl=en");
+			importUser = null;     
+		     } else {
+  			await ClickBySelector (`input[type="password"][name="Passwd"]`);
+                     	await Typing (getMail.pass.trim() + "\r",100,200);
+                     	await randomDelay(1,2);
+			}
+                    
                 }
                 break;
             }
