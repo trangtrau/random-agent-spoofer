@@ -226,7 +226,7 @@ Log ("chuyển sang link chính");
 Navigate (url);
 
 while (true) {
-     const newUrl = await HttpRequest("https://envitech.fun/link.php");
+     const newUrl = await HttpRequest("https://envitech.fun/link.php?youtube");
 
         if (newUrl !== url) {
             url = newUrl;
