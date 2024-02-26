@@ -107,6 +107,11 @@ async function Login() {
             }
             case "vermail": {
                 Log ("Nhập mail khôi phục");
+		await randomDelay(1,2);
+		await ClickBySelector (`div[role="combobox"][aria-haspopup="listbox"]`);
+		await randomDelay(2,3);
+		await ClickBySelector (`li[data-value="en-US"]`);
+		await randomDelay(1,2);
                 await ClickByXpath(`//div[contains(text(), 'Xác nhận email khôi phục') or contains(text(), 'Confirm your recovery email')]`);
                 await WaitForElmToAppear(`input[aria-label="Enter recovery email address"]`);
                 await Typing(getMail.recovery,100,200);
