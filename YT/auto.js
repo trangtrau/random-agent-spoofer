@@ -16,7 +16,7 @@ async function Login() {
 	
     let attempts = 0;
     while (attempts < 20) {
-    const whatNext = await WaitForFirstElement2(checkConds, 1);
+    const whatNext = await WaitForFirstElement2(checkConds, 0.5);
     switch (whatNext) {
             case "gmailDie":
             case "gmailDie2":    
@@ -152,6 +152,11 @@ url = await HttpRequest ("https://envitech.fun/link.php?type=youtube");
 Log (url)
 
 const randomUrl = await HttpRequest("https://envitech.fun/link.php");
+await Navigate("https://myaccount.google.com/signinoptions/two-step-verification");
+await WaitForLoading ();
+Log ("Check tình trạng login!");
+await Login();	
+
 Navigate (randomUrl);
 await WaitForLoading ();
 await randomDelay(5,10);
@@ -162,10 +167,6 @@ Log ("Chuyển sang link ngẫu nhiên!");
 await ClickRandomLink();
 await randomDelay(5,10);
 	
-await Navigate("https://myaccount.google.com/signinoptions/two-step-verification");
-await WaitForLoading ();
-Log ("Check tình trạng login!");
-await Login();	
 
 
 Log ("Chuyển sang link youtube!");
