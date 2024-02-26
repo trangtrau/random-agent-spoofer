@@ -196,6 +196,7 @@ while (true) {
             await ClickRandomLink();
             await randomDelay(5,30);
             Navigate (url);
+	    await randomDelay(120,320);
         }
         await randomDelay(55,120);
      
