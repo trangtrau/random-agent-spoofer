@@ -153,11 +153,19 @@ url = await HttpRequest ("https://envitech.fun/link.php?type=youtube");
 Log (url)
 
 const randomUrl = await HttpRequest("https://envitech.fun/link.php");
-await Navigate("https://myaccount.google.com/signinoptions/two-step-verification");
+await Navigate("https://www.youtube.com/");
 await WaitForLoading ();
 Log ("Check tình trạng login!");
-await Login();	
-/*
+const checkLogin =  await WaitForElement('a[href*="https://accounts.google.com/ServiceLogin?"]', (elm) => !!elm, 5);
+if(checkLogin){
+	await Navigate("https://myaccount.google.com/signinoptions/two-step-verification");
+	await WaitForLoading ();
+	await Login();	
+} 
+
+
+
+	
 Navigate (randomUrl);
 await WaitForLoading ();
 await randomDelay(5,10);
@@ -167,7 +175,7 @@ await randomDelay(5,10);
 Log ("Chuyển sang link ngẫu nhiên!");
 await ClickRandomLink();
 await randomDelay(5,10);
-*/	
+	
 
 
 Log ("Chuyển sang link youtube!");
