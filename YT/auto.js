@@ -88,7 +88,12 @@ async function Login() {
                 } else {
                      Log ("Nhập Pass");
 		     	const source = await GetSource();
-			const foundIndex = source.indexOf("Try again or click Forgot password to reset it");
+			await ClickBySelector (`input[type="password"][name="Passwd"]`);
+                     	await Typing (getMail.pass.trim() + "\r",100,200);
+                     	await randomDelay(1,2);
+			/*
+   			const foundIndex = source.indexOf("Try again or click Forgot password to reset it");
+
 		     if (foundIndex !== -1) {
 			await HttpRequest(`${linkApi}update=true&conditions[gmail]=${getMail.gmail}&data[die]=3`);
 			let ipv6 = await HttpRequest(`http://ipv6-test.com/api/myip.php`);
@@ -103,6 +108,7 @@ async function Login() {
                      	await Typing (getMail.pass.trim() + "\r",100,200);
                      	await randomDelay(1,2);
 			}
+   			*/
                     
                 }
                 break;
