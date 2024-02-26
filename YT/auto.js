@@ -23,7 +23,7 @@ async function Login() {
             case "gmailDie2":    
                 {
                 await HttpRequest(`${linkApi}update=true&conditions[gmail]=${getMail.gmail}&data[die]=1`);
-                await Navigate("https://myaccount.google.com/signinoptions/two-step-verification");
+                await Navigate("https://myaccount.google.com/signinoptions/two-step-verification?hl=en");
                 await WaitForLoading ();
 		        let mailData = await HttpRequest(`${linkApi}ip=ipv6`);
                 getMail = JSON.parse(mailData);
@@ -54,7 +54,7 @@ async function Login() {
              case "needrecovery": {
                 Log ("Acc bị recovery");
                 await HttpRequest(`${linkApi}update=true&conditions[gmail]=${getMail.gmail}&data[die]=2`);
-                await Navigate("https://myaccount.google.com/signinoptions/two-step-verification");
+                await Navigate("https://myaccount.google.com/signinoptions/two-step-verification?hl=en");
                 let mailData = await HttpRequest(`${linkApi}ip=null&die=null`);
                 getMail = JSON.parse(mailData);
                 break;
@@ -115,7 +115,7 @@ async function Login() {
                 break;
             }
             default: {
-                await Navigate ("https://myaccount.google.com/signinoptions/two-step-verification");
+                await Navigate ("https://myaccount.google.com/signinoptions/two-step-verification?hl=en");
                 return false;
                 break;
             }
@@ -154,7 +154,7 @@ Log (url)
 const randomUrl = await HttpRequest("https://envitech.fun/link.php");
 await WaitForLoading ();
 Log ("Check tình trạng login!");
-await Navigate("https://myaccount.google.com/signinoptions/two-step-verification");
+await Navigate("https://myaccount.google.com/signinoptions/two-step-verification?hl=en");
 await WaitForLoading ();
 await Login();	
 await Navigate("https://accounts.google.com/ServiceLogin?service=youtube");
