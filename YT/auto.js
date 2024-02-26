@@ -46,7 +46,7 @@ async function Login() {
                 const result = await SolveImageCaptcha("#captchaimg", "#ca", "anti-captcha", "6dee77ab7a8c947e5de288af88b34bb1",45)
                 Log(result);
                 await SendKeyPress (K_ENTER);
-		        await randomDelay(5,10);
+		        await randomDelay(1,2);
                 break;
             }
 
@@ -71,7 +71,7 @@ async function Login() {
 		        await ClickBySelector (`input#identifierId[value=""]`);
 		        await Typing (getMail.gmail.trim() + "\r",100,200);
 		        importUser = 1;
-		        await randomDelay(2,5);
+		        await randomDelay(1,2);
                 break;
             }
             case "gmailexit": {
@@ -88,7 +88,7 @@ async function Login() {
                      Log ("Nhập Pass");
                      await ClickBySelector (`input[type="password"][name="Passwd"]`);
                      await Typing (getMail.pass.trim() + "\r",100,200);
-                     await randomDelay(2,5);
+                     await randomDelay(1,2);
                 }
                 break;
             }
