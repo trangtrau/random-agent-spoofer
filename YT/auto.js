@@ -157,7 +157,7 @@ Log ("Check tình trạng login!");
 await Navigate("https://myaccount.google.com/signinoptions/two-step-verification");
 await WaitForLoading ();
 await Login();	
-await Navigate("https://www.youtube.com/");
+await Navigate("https://accounts.google.com/ServiceLogin?service=youtube");
 
 
 
