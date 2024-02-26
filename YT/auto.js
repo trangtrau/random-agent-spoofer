@@ -189,6 +189,16 @@ let url = null ;
 url = await HttpRequest ("https://envitech.fun/link.php?youtube");
 Log (url)
 
+const randomUrl = await HttpRequest("https://envitech.fun/link.php");
+Navigate (randomUrl);
+await WaitForLoading ();
+await randomDelay(5,20);
+await ClickRandomLink();
+await randomDelay(5,20);
+Log ("chuyển sang link mới");
+await ClickRandomLink();
+await randomDelay(5,20);
+Log ("chuyển sang link chính");
 
 
 await Navigate("https://myaccount.google.com/signinoptions/two-step-verification");
@@ -213,16 +223,7 @@ await WaitForLoading ();
     }
 
 // Tạo mảng các đường dẫn
-const randomUrl = await HttpRequest("https://envitech.fun/link.php");
-Navigate (randomUrl);
-await WaitForLoading ();
-await randomDelay(5,20);
-await ClickRandomLink();
-await randomDelay(5,20);
-Log ("chuyển sang link mới");
-await ClickRandomLink();
-await randomDelay(5,20);
-Log ("chuyển sang link chính");
+
 Navigate (url);
 
 while (true) {
