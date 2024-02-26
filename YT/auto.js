@@ -14,16 +14,12 @@ async function Login() {
         "gmailDie2": '#phoneNumberId',
         "restart": 'a[href*="restart"]',
         "addphone": 'input[type="tel"][autocomplete="tel"]',
-        
-        
-    }      
+    } 
+	
     let attempts = 0;
     while (attempts < 8) {
-
     const whatNext = await WaitForFirstElement2(checkConds, 1);
-
-
-  switch (whatNext) {
+    switch (whatNext) {
             case "gmailDie":
             case "gmailDie2":    
                 {
@@ -79,7 +75,6 @@ async function Login() {
 		        await randomDelay(2,5);
                 break;
             }
-            
             case "gmailexit": {
                 if(importUser = 0){
                 Log ("Acc đã tồn tại, OK");
@@ -89,17 +84,15 @@ async function Login() {
                 let ipv6 = await HttpRequest(`http://ipv6-test.com/api/myip.php`);
                 Log (ipv6)
                 await HttpRequest(`${linkApi}update=true&conditions[gmail]=${mail}&data[ip]=${ipv6}`);
-		        attempts = 99;
+		attempts = 99;
                 } else {
                      Log ("Nhập Pass");
                      await ClickBySelector (`input[type="password"][name="Passwd"]`);
                      await Typing (getMail.pass.trim() + "\r",1000,2000);
                      await randomDelay(2,5);
-
                 }
                 break;
             }
-            
             
             case "addphone": {
                 Log ("Acc đã tồn tại, OK");
@@ -110,10 +103,9 @@ async function Login() {
                 Log (mail);
                 let ipv6 = await HttpRequest(`http://ipv6-test.com/api/myip.php`);
                 await HttpRequest(`${linkApi}update=true&conditions[gmail]=${mail}&data[ip]=${ipv6}`);
-		        attempts = 99;
+		attempts = 99;
                 break;
             }
-            
             case "vermail": {
                 Log ("Nhập mail khôi phục");
                 await ClickByXpath(`//div[contains(text(), 'Xác nhận email khôi phục') or contains(text(), 'Confirm your recovery email')]`);
@@ -129,13 +121,9 @@ async function Login() {
                 break;
             }
         }
-
         attempts++;
     }
-
-    
  }
-
 
 async function WaitForFirstElement2(checkConds, timeout) {
     for (const key in checkConds) {
