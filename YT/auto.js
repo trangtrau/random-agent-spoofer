@@ -131,7 +131,6 @@ async function WaitForFirstElement2(checkConds, timeout) {
             const checkExit =  await WaitForElement(selector, (elm) => !!elm, timeout);
             if(checkExit){return key;}
         } catch (error) {
-              console.error(`Không tìm thấy phần tử cho điều kiện ${key}`);
         }
     }
     throw new Error("Không tìm thấy phần tử cho bất kỳ điều kiện nào");
@@ -158,6 +157,7 @@ await WaitForLoading ();
 Log ("Check tình trạng login!");
 const checkLogin =  await WaitForElement('a[href*="https://accounts.google.com/ServiceLogin?"]', (elm) => !!elm, 5);
 if(checkLogin){
+	Log ("Chưa đăng nhập");
 	await Navigate("https://myaccount.google.com/signinoptions/two-step-verification");
 	await WaitForLoading ();
 	await Login();	
