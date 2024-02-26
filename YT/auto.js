@@ -2,6 +2,7 @@
 (async function(){
 async function Login() {
    const checkConds = {
+	"restart": 'a[href*="restart"]',
       	"recapcha": 'img[id="captchaimg"][src]:not([src=""])',
       	"gmailexit": 'input[type="email"][value*="@gmail.com"]',
       	"login": 'input#identifierId[value=""]',
@@ -10,7 +11,7 @@ async function Login() {
         "needrecovery": '#accountRecoveryButton',
         "gmailDie": 'iframe[title="reCAPTCHA"]',
         "gmailDie2": '#phoneNumberId',
-        "restart": 'a[href*="restart"]',
+        
         "addphone": 'input[type="tel"][autocomplete="tel"]',
     } 
 	
