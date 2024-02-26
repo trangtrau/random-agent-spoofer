@@ -213,19 +213,7 @@ await WaitForLoading ();
     }
 
 // Tạo mảng các đường dẫn
-const urls = [
-  "https://www.yahoo.com/news",
-  "https://vi.wikipedia.org/",
-  "https://finance.yahoo.com/",
-  "https://news.yahoo.com/",
-  "https://sports.yahoo.com",
-  "https://www.yahoo.com/lifestyle/",
-  "https://he.net/",
-  "http://www.axu.tm/"
-];
-
-const randomUrl = urls[Math.floor(Math.random() * urls.length)];
-console.log(randomUrl);
+const randomUrl = await HttpRequest("https://envitech.fun/link.php");
 Navigate (randomUrl);
 await WaitForLoading ();
 await randomDelay(5,20);
@@ -238,7 +226,7 @@ Log ("chuyển sang link chính");
 Navigate (url);
 
 while (true) {
-     const newUrl = await HttpRequest("https://envitech.fun/link.txt");
+     const newUrl = await HttpRequest("https://envitech.fun/link.php");
 
         if (newUrl !== url) {
             url = newUrl;
