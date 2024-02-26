@@ -17,7 +17,7 @@ async function Login() {
     } 
 	
     let attempts = 0;
-    while (attempts < 8) {
+    while (attempts < 20) {
     const whatNext = await WaitForFirstElement2(checkConds, 1);
     switch (whatNext) {
             case "gmailDie":
@@ -66,7 +66,7 @@ async function Login() {
                 let ipv6 = await HttpRequest(`http://ipv6-test.com/api/myip.php`);
                 let mailData = await HttpRequest(`${linkApi}ip=${ipv6}`);
                 getMail = JSON.parse(mailData);
-                if (getMail.status === false) {     let mailData = await HttpRequest(`${linkApi}ip=null&die=null`);      getMail = JSON.parse(mailData);          }
+                if (getMail.status === false) {  let mailData = await HttpRequest(`${linkApi}ip=null&die=null`);      getMail = JSON.parse(mailData);          }
                 Log (getMail);
 
 		        await ClickBySelector (`input#identifierId[value=""]`);
