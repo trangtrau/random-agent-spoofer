@@ -164,7 +164,6 @@ async function randomDelay(min, max) {
 //RUN CODE
 
 const phones = [];
-await WaitForLoading ();
 let getMail = null;
 const linkApi = 'https://envitech.fun/api.php?key=api_key_hoanglong&'
 let url = null ;
