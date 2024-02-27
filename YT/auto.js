@@ -84,7 +84,7 @@ async function Login() {
                 let ipv6 = await HttpRequest(`http://ipv6-test.com/api/myip.php`);
                 Log (ipv6)
                 await HttpRequest(`${linkApi}update=true&conditions[gmail]=${mail}&data[ip]=${ipv6}`);
-		            attempts = 99;
+		attempts = 99;
                 Exit();
                 } else {
                      Log ("Nhập Pass");
