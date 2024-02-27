@@ -88,14 +88,9 @@ async function Login() {
                 } else {
                      Log ("Nhập Pass");
 		     	const source = await GetSource();
-			await ClickBySelector (`input[type="password"][name="Passwd"]`);
-                     	await Typing (getMail.pass.trim() + "\r",100,200);
-                     	await randomDelay(1,2);
-			/*
-   			const foundIndex = source.indexOf("Try again or click Forgot password to reset it");
-
-		     if (foundIndex !== -1) {
-			await HttpRequest(`${linkApi}update=true&conditions[gmail]=${getMail.gmail}&data[die]=3`);
+			const isFound = source.includes("Try again or click Forgot password to reset it");
+			if (isFound) {
+   			await HttpRequest(`${linkApi}update=true&conditions[gmail]=${getMail.gmail}&data[die]=3`);
 			let ipv6 = await HttpRequest(`http://ipv6-test.com/api/myip.php`);
                 	let mailData = await HttpRequest(`${linkApi}ip=${ipv6}`);
                 	getMail = JSON.parse(mailData);
@@ -103,12 +98,12 @@ async function Login() {
                 	Log (getMail);
 			await Navigate("https://myaccount.google.com/signinoptions/two-step-verification?hl=en");
 			importUser = null;     
-		     } else {
+		    	 } else {
   			await ClickBySelector (`input[type="password"][name="Passwd"]`);
                      	await Typing (getMail.pass.trim() + "\r",100,200);
                      	await randomDelay(1,2);
 			}
-   			*/
+   		
                     
                 }
                 break;
