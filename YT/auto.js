@@ -86,8 +86,7 @@ async function Login() {
                 Log (ipv6)
                 await HttpRequest(`${linkApi}update=true&conditions[gmail]=${mail}&data[ip]=${ipv6}`);
 		attempts = 99;
-                Exit();
-                } else {
+                     } else {
                      Log ("Nhập Pass");
 			await ClickBySelector (`div[role="combobox"][aria-haspopup="listbox"]`);
 		        await randomDelay(2,3);
@@ -123,8 +122,8 @@ async function Login() {
                 Log (mail);
                 let ipv6 = await HttpRequest(`http://ipv6-test.com/api/myip.php`);
                 await HttpRequest(`${linkApi}update=true&conditions[gmail]=${mail}&data[ip]=${ipv6}`);
-		            attempts = 99;
-                Exit();
+		attempts = 99;
+        
                 break;
             }
             case "vermail": {
@@ -151,6 +150,7 @@ async function Login() {
         attempts++;
     }
  }
+
 
 async function WaitForFirstElement2(checkConds, timeout) {
     for (const key in checkConds) {
@@ -186,6 +186,11 @@ await Navigate("https://myaccount.google.com/signinoptions/two-step-verification
 await WaitForLoading ();
 await Login();	
 await Navigate("https://accounts.google.com/ServiceLogin?service=youtube");
+
+
+
+
+	
 Navigate (randomUrl);
 await WaitForLoading ();
 await randomDelay(5,10);
@@ -197,6 +202,27 @@ await ClickRandomLink();
 await randomDelay(5,10);
 	
 
+
+Log ("Chuyển sang link youtube!");
+Navigate (url);
+
+while (true) {
+     const newUrl = await HttpRequest("https://envitech.fun/link.php?type=youtube");
+
+        if (newUrl !== url) {
+            url = newUrl;
+            console.log("URL mới đã được tìm thấy:", url);
+            await ClickRandomLink();
+            await randomDelay(5,30);
+            Navigate (url);
+	    await randomDelay(120,320);
+        }
+        await randomDelay(55,120);
+     
+
+
+
+}
 
     
 })();
