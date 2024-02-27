@@ -22,6 +22,7 @@ async function Login() {
             case "gmailDie":
             case "gmailDie2":    
                 {
+			  Log ("Gmail Die, lấy mail khác");
                 await HttpRequest(`${linkApi}update=true&conditions[gmail]=${getMail.gmail}&data[die]=1`);
                 await Navigate("https://myaccount.google.com/signinoptions/two-step-verification?hl=en");
                 await WaitForLoading ();
