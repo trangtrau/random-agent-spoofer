@@ -75,6 +75,7 @@ async function Login() {
                 break;
             }
             case "gmailexit": {
+		Log (importUser);    
                 if(importUser = 0){
                 Log ("Acc đã tồn tại, OK");
                 let mail = await GetAttribute (`//*[@id="hiddenEmail"]`, 'value');
