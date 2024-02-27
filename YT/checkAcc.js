@@ -14,7 +14,7 @@ async function Login() {
         
         "addphone": 'input[type="tel"][autocomplete="tel"]',
     } 
-	
+    let importUser = 0;
     let attempts = 0;
     while (attempts < 20) {
     const whatNext = await WaitForFirstElement2(checkConds, 0.5);
@@ -22,6 +22,7 @@ async function Login() {
             case "gmailDie":
             case "gmailDie2":    
                 {
+			  Log ("Gmail Die, lấy mail khác");
                 await HttpRequest(`${linkApi}update=true&conditions[gmail]=${getMail.gmail}&data[die]=1`);
                 await Navigate("https://myaccount.google.com/signinoptions/two-step-verification?hl=en");
                 await WaitForLoading ();
@@ -75,7 +76,8 @@ async function Login() {
                 break;
             }
             case "gmailexit": {
-                if(importUser = 0){
+		Log (`Check Import user ${importUser}`);    
+                if(importUser == 0){
                 Log ("Acc đã tồn tại, OK");
                 let mail = await GetAttribute (`//*[@id="hiddenEmail"]`, 'value');
                 const mailData = await HttpRequest(`${linkApi}gmail=${mail}`);
@@ -83,13 +85,31 @@ async function Login() {
                 let ipv6 = await HttpRequest(`http://ipv6-test.com/api/myip.php`);
                 Log (ipv6)
                 await HttpRequest(`${linkApi}update=true&conditions[gmail]=${mail}&data[ip]=${ipv6}`);
-		            attempts = 99;
+		attempts = 99;
                 Exit();
                 } else {
                      Log ("Nhập Pass");
-                     await ClickBySelector (`input[type="password"][name="Passwd"]`);
-                     await Typing (getMail.pass.trim() + "\r",100,200);
-                     await randomDelay(1,2);
+			await ClickBySelector (`div[role="combobox"][aria-haspopup="listbox"]`);
+		        await randomDelay(2,3);
+		        await ClickBySelector (`li[data-value="en-US"]`);
+		        await randomDelay(3,4);
+			await ClickBySelector (`input[type="password"][name="Passwd"]`);
+                     	await Typing (getMail.pass.trim() + "\r",100,200);
+                     	await randomDelay(2,3);
+		     	const source = await GetSource();
+			const isFound = source.includes("Try again or click Forgot password to reset it");
+			if (isFound) {
+			Log ("Sai Pass");	
+   			await HttpRequest(`${linkApi}update=true&conditions[gmail]=${getMail.gmail}&data[die]=3`);
+			let ipv6 = await HttpRequest(`http://ipv6-test.com/api/myip.php`);
+                	let mailData = await HttpRequest(`${linkApi}ip=${ipv6}`);
+                	getMail = JSON.parse(mailData);
+                	if (getMail.status === false) {  let mailData = await HttpRequest(`${linkApi}ip=null&die=null`);      getMail = JSON.parse(mailData);          }
+                	Log (getMail);
+			await Navigate("https://myaccount.google.com/signinoptions/two-step-verification?hl=en");
+			importUser = null;     
+		    	 }   		
+                    
                 }
                 break;
             }
