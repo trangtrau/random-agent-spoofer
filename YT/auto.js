@@ -14,7 +14,7 @@ async function Login() {
         
         "addphone": 'input[type="tel"][autocomplete="tel"]',
     } 
-    let importUser;
+    let importUser = 0;
     let attempts = 0;
     while (attempts < 20) {
     const whatNext = await WaitForFirstElement2(checkConds, 0.5);
