@@ -14,6 +14,7 @@ async function Login() {
         
         "addphone": 'input[type="tel"][autocomplete="tel"]',
     } 
+    let importUser = 0;
     let attempts = 0;
     while (attempts < 20) {
     const whatNext = await WaitForFirstElement2(checkConds, 0.5);
@@ -76,7 +77,7 @@ async function Login() {
             }
             case "gmailexit": {
 		Log (`Check Import user ${importUser}`);    
-                if(importUser === 0){
+                if(importUser == 0){
                 Log ("Acc đã tồn tại, OK");
                 let mail = await GetAttribute (`//*[@id="hiddenEmail"]`, 'value');
                 const mailData = await HttpRequest(`${linkApi}gmail=${mail}`);
@@ -172,7 +173,6 @@ async function randomDelay(min, max) {
 
 //kết thúc khai báo hàm
 //RUN CODE
-let importUser = 0;
 let getMail = null;
 const linkApi = 'https://envitech.fun/api.php?key=api_key_hoanglong&'
 let url = null ;
