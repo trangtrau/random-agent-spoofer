@@ -98,6 +98,7 @@ async function Login() {
 		     	const source = await GetSource();
 			const isFound = source.includes("Try again or click Forgot password to reset it");
 			if (isFound) {
+			Log ("Sai Pass");	
    			await HttpRequest(`${linkApi}update=true&conditions[gmail]=${getMail.gmail}&data[die]=3`);
 			let ipv6 = await HttpRequest(`http://ipv6-test.com/api/myip.php`);
                 	let mailData = await HttpRequest(`${linkApi}ip=${ipv6}`);
