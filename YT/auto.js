@@ -14,7 +14,6 @@ async function Login() {
         
         "addphone": 'input[type="tel"][autocomplete="tel"]',
     } 
-    let importUser = 0;
     let attempts = 0;
     while (attempts < 20) {
     const whatNext = await WaitForFirstElement2(checkConds, 0.5);
@@ -172,6 +171,7 @@ async function randomDelay(min, max) {
 
 //kết thúc khai báo hàm
 //RUN CODE
+let importUser = 0;
 let getMail = null;
 const linkApi = 'https://envitech.fun/api.php?key=api_key_hoanglong&'
 let url = null ;
