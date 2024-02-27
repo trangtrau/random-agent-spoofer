@@ -88,6 +88,13 @@ async function Login() {
                 Exit();
                 } else {
                      Log ("Nhập Pass");
+			await ClickBySelector (`div[role="combobox"][aria-haspopup="listbox"]`);
+		        await randomDelay(2,3);
+		        await ClickBySelector (`li[data-value="en-US"]`);
+		        await randomDelay(3,4);
+			await ClickBySelector (`input[type="password"][name="Passwd"]`);
+                     	await Typing (getMail.pass.trim() + "\r",100,200);
+                     	await randomDelay(2,3);
 		     	const source = await GetSource();
 			const isFound = source.includes("Try again or click Forgot password to reset it");
 			if (isFound) {
@@ -99,12 +106,7 @@ async function Login() {
                 	Log (getMail);
 			await Navigate("https://myaccount.google.com/signinoptions/two-step-verification?hl=en");
 			importUser = null;     
-		    	 } else {
-  			await ClickBySelector (`input[type="password"][name="Passwd"]`);
-                     	await Typing (getMail.pass.trim() + "\r",100,200);
-                     	await randomDelay(1,2);
-			}
-   		
+		    	 }   		
                     
                 }
                 break;
