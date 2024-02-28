@@ -180,8 +180,8 @@ url = await HttpRequest ("https://envitech.fun/link.php?type=youtube");
 Log (url)
 
 const randomUrl = await HttpRequest("https://envitech.fun/link.php");
-await WaitForLoading ();
 Log ("Check tình trạng login!");
+await randomDelay(10,60);
 await Navigate("https://myaccount.google.com/signinoptions/two-step-verification?hl=en");
 await WaitForLoading ();
 await Login();	
