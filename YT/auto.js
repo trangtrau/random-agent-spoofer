@@ -63,8 +63,8 @@ async function Login() {
             
             case "login": {
                 Log ("Nhập Acc");
-                    getMail = JSON.parse(mailData);
-                if (getMail.status === false) {  let mailData = await HttpRequest(`${linkApi}lastrun=null&die=null`);      getMail = JSON.parse(mailData);          }
+                 let mailData = await HttpRequest(`${linkApi}lastrun=null&die=null`);     
+		getMail = JSON.parse(mailData);     
                 Log (getMail);
 
 		        await ClickBySelector (`input#identifierId[value=""]`);
@@ -80,9 +80,7 @@ async function Login() {
                 let mail = await GetAttribute (`//*[@id="hiddenEmail"]`, 'value');
                 const mailData = await HttpRequest(`${linkApi}gmail=${mail}`);
                 Log (mailData)
-                let ipv6 = await HttpRequest(`http://ipv6-test.com/api/myip.php`);
-                Log (ipv6)
-                await HttpRequest(`${linkApi}update=true&conditions[gmail]=${mail}&data[ip]=${ipv6}`);
+                await HttpRequest(`${linkApi}update=true&conditions[gmail]=${mail}&data[lastrun]=1`);
 		attempts = 99;
                      } else {
                      Log ("Nhập Pass");
@@ -118,8 +116,7 @@ async function Login() {
                 const match = result.match(emailRegex);
                 let mail = match[0];
                 Log (mail);
-                let ipv6 = await HttpRequest(`http://ipv6-test.com/api/myip.php`);
-                await HttpRequest(`${linkApi}update=true&conditions[gmail]=${mail}&data[ip]=${ipv6}`);
+                await HttpRequest(`${linkApi}update=true&conditions[gmail]=${mail}&data[lastrun]=1`);
 		attempts = 99;
         
                 break;
@@ -136,7 +133,6 @@ async function Login() {
                 await Typing(getMail.recovery,100,200);
                 await ClickByXpath(`//span[contains(text(),'Next')]`);
                 await randomDelay(10,15);
-                Exit();
                 break;
             }
             default: {
