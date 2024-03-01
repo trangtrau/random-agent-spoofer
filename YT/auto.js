@@ -63,10 +63,8 @@ async function Login() {
             
             case "login": {
                 Log ("Nhập Acc");
-                let ipv6 = await HttpRequest(`http://ipv6-test.com/api/myip.php`);
-                let mailData = await HttpRequest(`${linkApi}ip=${ipv6}`);
-                getMail = JSON.parse(mailData);
-                if (getMail.status === false) {  let mailData = await HttpRequest(`${linkApi}ip=null&die=null`);      getMail = JSON.parse(mailData);          }
+                    getMail = JSON.parse(mailData);
+                if (getMail.status === false) {  let mailData = await HttpRequest(`${linkApi}lastrun=null&die=null`);      getMail = JSON.parse(mailData);          }
                 Log (getMail);
 
 		        await ClickBySelector (`input#identifierId[value=""]`);
