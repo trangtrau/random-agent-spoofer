@@ -25,7 +25,7 @@ Start-Process -FilePath "$downloadPath\python-3.10.6-amd64.exe" -ArgumentList "/
 
 Write-Host "Cài đặt Brave Browser..." -ForegroundColor Green
 # Cài đặt Brave Browser
-Start-Process -FilePath "$downloadPath\BraveBrowserSetup-BRV010.exe" -ArgumentList "/silent" -Wait
+Start-Process -FilePath "$downloadPath\BraveBrowserSetup-BRV010.exe" 
 
 Write-Host "Cài đặt Node.js, Python và Brave Browser hoàn tất." -ForegroundColor Green
 
