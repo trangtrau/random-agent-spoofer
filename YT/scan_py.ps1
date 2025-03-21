@@ -11,15 +11,15 @@ Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.10.6/python-3.10.6-a
 Invoke-WebRequest -Uri "https://referrals.brave.com/latest/BraveBrowserSetup-BRV010.exe" -OutFile "$downloadPath\BraveBrowserSetup-BRV010.exe"
 
 Write-Host "Tải xuống hoàn tất." -ForegroundColor Green
+Write-Host "Cài đặt Brave Browser..." -ForegroundColor Green
+# Cài đặt Brave Browser
+Start-Process -FilePath "$downloadPath\BraveBrowserSetup-BRV010.exe" 
 
 
 Write-Host "Cài đặt Python..." -ForegroundColor Green
 # Cài đặt Python
 Start-Process -FilePath "$downloadPath\python-3.10.6-amd64.exe" -ArgumentList "/quiet InstallAllUsers=1 PrependPath=1" -Wait
 
-Write-Host "Cài đặt Brave Browser..." -ForegroundColor Green
-# Cài đặt Brave Browser
-Start-Process -FilePath "$downloadPath\BraveBrowserSetup-BRV010.exe" 
 
 
 # Cập nhật lại biến môi trường PATH trong phiên PowerShell hiện tại
