@@ -26,17 +26,7 @@ Start-Process -FilePath "$downloadPath\BraveBrowserSetup-BRV010.exe"
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path", [System.EnvironmentVariableTarget]::Machine) + ";" + [System.Environment]::GetEnvironmentVariable("Path", [System.EnvironmentVariableTarget]::User)
 Write-Host "Cập nhật PATH hoàn tất. Giờ đây bạn có thể sử dụng npm và pip mà không cần khởi động lại console." -ForegroundColor Green
 
-Write-Host "Cài đặt các gói Python..." -ForegroundColor Green
-# Cài đặt các gói Python
-pip install psutil==6.1.0 PyAutoGUI==0.9.54 requests pytz
 
-Write-Host "Cài đặt hoàn tất." -ForegroundColor Green
-
-Write-Host "Dọn dẹp các file tạm..." -ForegroundColor Yellow
-# Dọn dẹp các file tạm
-Remove-Item -Path $downloadPath -Recurse -Force
-
-Write-Host "Quá trình hoàn tất. Tất cả các gói đã được cài đặt thành công!" -ForegroundColor Green
 @"
 asyncio
 json
@@ -61,4 +51,8 @@ urllib3
 zipfile
 subprocess
 "@ | Out-File -FilePath "requirements.txt" -Encoding UTF8; pip install -r requirements.txt
+
+
+
+Write-Host "Quá trình hoàn tất. Tất cả các gói đã được cài đặt thành công!" -ForegroundColor Green
 
