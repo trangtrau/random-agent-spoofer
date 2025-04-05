@@ -1,1 +1,0 @@
-wget -qO- https://raw.githubusercontent.com/trangtrau/random-agent-spoofer/refs/heads/master/TOOL/sock5.sh | bash
