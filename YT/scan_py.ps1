@@ -6,19 +6,21 @@ Write-Host "Tải xuống file cài đặt Node.js, Python và Brave Browser..."
 
 # Tải file Python
 Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.10.6/python-3.10.6-amd64.exe" -OutFile "$downloadPath\python-3.10.6-amd64.exe"
-
+Invoke-WebRequest -Uri "https://www.proxifier.com/download/ProxifierSetup.exe" -OutFile "$downloadPath\ProxifierSetup.exe"
 # Tải file Brave Browser
 Invoke-WebRequest -Uri "https://referrals.brave.com/latest/BraveBrowserSetup-BRV010.exe" -OutFile "$downloadPath\BraveBrowserSetup-BRV010.exe"
+Invoke-WebRequest -Uri "https://github.com/trangtrau/random-agent-spoofer/raw/refs/heads/master/YT/chrome_setup.exe" -OutFile "$downloadPath\chrome_setup.exe"
 
 Write-Host "Tải xuống hoàn tất." -ForegroundColor Green
 Write-Host "Cài đặt Brave Browser..." -ForegroundColor Green
 # Cài đặt Brave Browser
-Start-Process -FilePath "$downloadPath\BraveBrowserSetup-BRV010.exe" 
 
-
+Start-Process -FilePath "$downloadPath\ProxifierSetup.exe" -ArgumentList "/silent" -Wait
+Start-Process -FilePath "$downloadPath\BraveBrowserSetup-BRV010.exe" -ArgumentList "/silent /install" -Wait
 Write-Host "Cài đặt Python..." -ForegroundColor Green
 # Cài đặt Python
 Start-Process -FilePath "$downloadPath\python-3.10.6-amd64.exe" -ArgumentList "/quiet InstallAllUsers=1 PrependPath=1" -Wait
+Start-Process -FilePath "$downloadPath\chrome_setup.exe" -ArgumentList "/silent /install" -Wait
 
 
 
