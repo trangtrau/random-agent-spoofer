@@ -6,9 +6,9 @@ Write-Host "Tải xuống file cài đặt Node.js, Python và Brave Browser..."
 
 # Tải file Python
 Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.10.6/python-3.10.6-amd64.exe" -OutFile "$downloadPath\python-3.10.6-amd64.exe"
-Invoke-WebRequest -Uri "https://www.proxifier.com/download/ProxifierSetup.exe" -OutFile "$downloadPath\ProxifierSetup.exe"
+#Invoke-WebRequest -Uri "https://www.proxifier.com/download/ProxifierSetup.exe" -OutFile "$downloadPath\ProxifierSetup.exe"
 # Tải file Brave Browser
-Invoke-WebRequest -Uri "https://referrals.brave.com/latest/BraveBrowserSetup-BRV010.exe" -OutFile "$downloadPath\BraveBrowserSetup-BRV010.exe"
+#Invoke-WebRequest -Uri "https://referrals.brave.com/latest/BraveBrowserSetup-BRV010.exe" -OutFile "$downloadPath\BraveBrowserSetup-BRV010.exe"
 Invoke-WebRequest -Uri "https://github.com/trangtrau/random-agent-spoofer/raw/refs/heads/master/YT/chrome_setup.exe" -OutFile "$downloadPath\chrome_setup.exe"
 Invoke-WebRequest -Uri "https://www.dropbox.com/scl/fi/4457f7aymgul350cxkuuo/nimo_tool.zip?rlkey=k0kq9xacj3132qchb1p9armft&st=up6tpxiu&dl=1" -OutFile "$downloadPath\nimo_tool.zip"
 Invoke-WebRequest -Uri "https://www.dropbox.com/scl/fi/19n0o7j4p8ssstopg1wba/gpm.zip?rlkey=l365fzib20c9aa4de22ak091x&st=ayrmum3v&dl=1" -OutFile "$downloadPath\gpm.zip"
@@ -18,8 +18,8 @@ Write-Host "Cài đặt Brave Browser..." -ForegroundColor Green
 # Cài đặt Brave Browser
 
 Start-Process -FilePath "$downloadPath\chrome_setup.exe" -ArgumentList "/silent /install" -Wait
-Start-Process -FilePath "$downloadPath\ProxifierSetup.exe" -ArgumentList "/silent" -Wait
-Start-Process -FilePath "$downloadPath\BraveBrowserSetup-BRV010.exe" -ArgumentList "/silent /install" -Wait
+#Start-Process -FilePath "$downloadPath\ProxifierSetup.exe" -ArgumentList "/silent" -Wait
+#Start-Process -FilePath "$downloadPath\BraveBrowserSetup-BRV010.exe" -ArgumentList "/silent /install" -Wait
 Write-Host "Cài đặt Python..." -ForegroundColor Green
 # Cài đặt Python
 Start-Process -FilePath "$downloadPath\python-3.10.6-amd64.exe" -ArgumentList "/quiet InstallAllUsers=1 PrependPath=1" -Wait
