@@ -61,3 +61,17 @@ subprocess
 
 Write-Host "Quá trình hoàn tất. Tất cả các gói đã được cài đặt thành công!" -ForegroundColor Green
 
+$services = @("gupdate", "gupdatem")
+foreach ($svc in $services) {
+    Stop-Service -Name $svc -Force -ErrorAction SilentlyContinue
+    Set-Service -Name $svc -StartupType Disabled
+}
+
+# 2. Tắt các tác vụ tự động cập nhật trong Task Scheduler
+$schedulerTasks = @(
+    "\GoogleUpdateTaskMachineCore",
+    "\GoogleUpdateTaskMachineUA"
+)
+foreach ($task in $schedulerTasks) {
+    schtasks /Change /TN $task /Disable 2>$null
+}
