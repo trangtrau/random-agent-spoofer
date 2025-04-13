@@ -16,12 +16,13 @@ Write-Host "Tải xuống hoàn tất." -ForegroundColor Green
 Write-Host "Cài đặt Brave Browser..." -ForegroundColor Green
 # Cài đặt Brave Browser
 
+Start-Process -FilePath "$downloadPath\chrome_setup.exe" -ArgumentList "/silent /install" -Wait
 Start-Process -FilePath "$downloadPath\ProxifierSetup.exe" -ArgumentList "/silent" -Wait
 Start-Process -FilePath "$downloadPath\BraveBrowserSetup-BRV010.exe" -ArgumentList "/silent /install" -Wait
 Write-Host "Cài đặt Python..." -ForegroundColor Green
 # Cài đặt Python
 Start-Process -FilePath "$downloadPath\python-3.10.6-amd64.exe" -ArgumentList "/quiet InstallAllUsers=1 PrependPath=1" -Wait
-Start-Process -FilePath "$downloadPath\chrome_setup.exe" -ArgumentList "/silent /install" -Wait
+
 
 $destination = Join-Path -Path ([Environment]::GetFolderPath("Desktop")) -ChildPath "Nimo"
 Expand-Archive -Path "$downloadPath\nimo_tool.zip" -DestinationPath $destination -Force
