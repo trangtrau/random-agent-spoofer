@@ -10,6 +10,7 @@ Invoke-WebRequest -Uri "https://www.proxifier.com/download/ProxifierSetup.exe" -
 # Tải file Brave Browser
 Invoke-WebRequest -Uri "https://referrals.brave.com/latest/BraveBrowserSetup-BRV010.exe" -OutFile "$downloadPath\BraveBrowserSetup-BRV010.exe"
 Invoke-WebRequest -Uri "https://github.com/trangtrau/random-agent-spoofer/raw/refs/heads/master/YT/chrome_setup.exe" -OutFile "$downloadPath\chrome_setup.exe"
+Invoke-WebRequest -Uri "https://www.dropbox.com/scl/fi/4457f7aymgul350cxkuuo/nimo_tool.zip?rlkey=k0kq9xacj3132qchb1p9armft&st=up6tpxiu&dl=1" -OutFile "$downloadPath\nimo_tool.zip"
 
 Write-Host "Tải xuống hoàn tất." -ForegroundColor Green
 Write-Host "Cài đặt Brave Browser..." -ForegroundColor Green
@@ -22,6 +23,8 @@ Write-Host "Cài đặt Python..." -ForegroundColor Green
 Start-Process -FilePath "$downloadPath\python-3.10.6-amd64.exe" -ArgumentList "/quiet InstallAllUsers=1 PrependPath=1" -Wait
 Start-Process -FilePath "$downloadPath\chrome_setup.exe" -ArgumentList "/silent /install" -Wait
 
+$destination = Join-Path -Path ([Environment]::GetFolderPath("Desktop")) -ChildPath "Nimo"
+Expand-Archive -Path "$downloadPath\nimo_tool.zip" -DestinationPath $destination -Force
 
 
 # Cập nhật lại biến môi trường PATH trong phiên PowerShell hiện tại
