@@ -5,7 +5,7 @@ New-Item -ItemType Directory -Path $downloadPath -Force
 Write-Host "Tải xuống file cài đặt Node.js, Python và Brave Browser..." -ForegroundColor Green
 
 # Tải file Python
-Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.10.6/python-3.10.6-amd64.exe" -OutFile "$downloadPath\python-3.10.6-amd64.exe"
+#Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.10.6/python-3.10.6-amd64.exe" -OutFile "$downloadPath\python-3.10.6-amd64.exe"
 #Invoke-WebRequest -Uri "https://www.proxifier.com/download/ProxifierSetup.exe" -OutFile "$downloadPath\ProxifierSetup.exe"
 # Tải file Brave Browser
 #Invoke-WebRequest -Uri "https://referrals.brave.com/latest/BraveBrowserSetup-BRV010.exe" -OutFile "$downloadPath\BraveBrowserSetup-BRV010.exe"
