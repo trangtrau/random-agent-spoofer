@@ -1,28 +1,26 @@
 #!/bin/bash
 
 function install_lemp() {
-    echo "🔧 Đang cài đặt LEMP Stack..."
+    echo "Dang cai dat LEMP Stack..."
     sudo apt update && sudo apt upgrade -y
     sudo apt install nginx mysql-server php-fpm php-mysql php-curl php-xml php-mbstring php-zip php-gd unzip wget curl certbot python3-certbot-nginx -y
-    echo "✅ Đã cài đặt LEMP Stack."
+    echo "LEMP Stack da duoc cai dat."
 }
 
 function install_wp_site() {
-    read -p "🌐 Domain: " DOMAIN
-    read -p "🧩 DB Name: " DB_NAME
-    read -p "👤 DB User: " DB_USER
-    read -s -p "🔐 DB Password: " DB_PASS; echo
-    read -p "📧 Email (để đăng ký SSL): " EMAIL
+    read -p "Domain: " DOMAIN
+    read -p "DB Name: " DB_NAME
+    read -p "DB User: " DB_USER
+    read -s -p "DB Password: " DB_PASS; echo
+    read -p "Email (dung de dang ky SSL): " EMAIL
 
     WP_DIR="/var/www/$DOMAIN"
 
-    # MySQL
     sudo mysql -e "CREATE DATABASE $DB_NAME DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
     sudo mysql -e "CREATE USER '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS';"
     sudo mysql -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'localhost';"
     sudo mysql -e "FLUSH PRIVILEGES;"
 
-    # WordPress
     cd /tmp
     wget https://wordpress.org/latest.tar.gz -O wordpress.tar.gz
     tar -xzf wordpress.tar.gz
@@ -31,7 +29,6 @@ function install_wp_site() {
     sudo chown -R www-data:www-data "$WP_DIR"
     sudo chmod -R 755 "$WP_DIR"
 
-    # Config wp-config
     cp "$WP_DIR/wp-config-sample.php" "$WP_DIR/wp-config.php"
     sed -i "s/database_name_here/$DB_NAME/" "$WP_DIR/wp-config.php"
     sed -i "s/username_here/$DB_USER/" "$WP_DIR/wp-config.php"
@@ -45,7 +42,7 @@ function install_wp_site() {
     sudo nginx -t && sudo systemctl reload nginx
     sudo certbot --nginx -d "$DOMAIN" -d "www.$DOMAIN" --non-interactive --agree-tos -m "$EMAIL" --redirect
 
-    echo "✅ Đã cài WordPress cho https://$DOMAIN"
+    echo "Da cai xong WordPress cho https://$DOMAIN"
 }
 
 function create_nginx_config() {
@@ -76,12 +73,12 @@ server {
 }
 EOF
 
-    sudo ln -s "$NGINX_CONF" /etc/nginx/sites-enabled/"
+    sudo ln -s "$NGINX_CONF" /etc/nginx/sites-enabled/
 }
 
 function add_domain() {
-    read -p "🌐 Domain: " DOMAIN
-    read -p "📁 Thư mục gốc (mặc định: /var/www/$DOMAIN): " WEBROOT
+    read -p "Domain: " DOMAIN
+    read -p "Thu muc goc (mac dinh: /var/www/$DOMAIN): " WEBROOT
     WEBROOT=${WEBROOT:-/var/www/$DOMAIN}
 
     sudo mkdir -p "$WEBROOT"
@@ -92,36 +89,36 @@ function add_domain() {
     create_nginx_config "$DOMAIN" "$WEBROOT"
     sudo nginx -t && sudo systemctl reload nginx
 
-    echo "✅ Domain $DOMAIN đã được thêm (chưa có SSL)."
+    echo "Domain $DOMAIN da duoc them (chua co SSL)."
 }
 
 function delete_domain() {
-    read -p "🌐 Domain cần xoá: " DOMAIN
+    read -p "Domain can xoa: " DOMAIN
     sudo rm -f "/etc/nginx/sites-enabled/$DOMAIN"
     sudo rm -f "/etc/nginx/sites-available/$DOMAIN"
     sudo rm -rf "/var/www/$DOMAIN"
     sudo nginx -t && sudo systemctl reload nginx
-    echo "❌ Đã xoá $DOMAIN"
+    echo "Da xoa $DOMAIN"
 }
 
 function install_ssl() {
-    read -p "🌐 Domain cần cài SSL: " DOMAIN
-    read -p "📧 Email (để đăng ký SSL): " EMAIL
+    read -p "Domain can cai SSL: " DOMAIN
+    read -p "Email (dang ky SSL): " EMAIL
     sudo certbot --nginx -d "$DOMAIN" -d "www.$DOMAIN" --non-interactive --agree-tos -m "$EMAIL" --redirect
-    echo "✅ SSL đã được cài cho https://$DOMAIN"
+    echo "SSL da duoc cai dat cho https://$DOMAIN"
 }
 
 while true; do
     echo ""
-    echo "===== MENU QUẢN TRỊ WEBSERVER ====="
-    echo "1. Cài đặt Webserver (LEMP)"
-    echo "2. Cài đặt Webserver + WordPress"
-    echo "3. Thêm domain"
-    echo "4. Xoá domain"
-    echo "5. Cài SSL cho domain"
-    echo "0. Thoát"
+    echo "===== MENU QUAN TRI WEBSERVER ====="
+    echo "1. Cai dat Webserver (LEMP)"
+    echo "2. Cai dat Webserver + WordPress"
+    echo "3. Them domain"
+    echo "4. Xoa domain"
+    echo "5. Cai SSL cho domain"
+    echo "0. Thoat"
     echo "===================================="
-    read -p "Chọn số (0-5): " OPTION
+    read -p "Chon so (0-5): " OPTION
 
     case $OPTION in
         1) install_lemp ;;
@@ -129,7 +126,7 @@ while true; do
         3) add_domain ;;
         4) delete_domain ;;
         5) install_ssl ;;
-        0) echo "Tạm biệt!"; exit ;;
-        *) echo "❌ Tuỳ chọn không hợp lệ." ;;
+        0) echo "Tam biet!"; exit ;;
+        *) echo "Lua chon khong hop le." ;;
     esac
 done
