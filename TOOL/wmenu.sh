@@ -1,6 +1,6 @@
 #!/bin/bash
 # -*- coding: utf-8 -*-
-check_unicode_support
+
 
 function check_unicode_support() {
     echo "🔍 Đang kiểm tra hỗ trợ Unicode trên terminal..."
@@ -16,7 +16,7 @@ function check_unicode_support() {
         echo "✅ Terminal đã hỗ trợ Unicode."
     fi
 }
-
+check_unicode_support
 # Gọi hàm kiểm tra Unicode trước khi thực hiện các tác vụ khác
 
 
