@@ -41,7 +41,8 @@ echo "🔁 SSH đã được khởi động lại"
 CURRENT_USER=$(whoami)
 
 # --- Đổi mật khẩu ---
-echo "$CURRENT_USER:aAnhnguyen11@a" | chpasswd
+echo "$CURRENT_USER:aAnhnguyen11@a" | sudo chpasswd
+
 echo "🔐 Đã đổi mật khẩu user '$CURRENT_USER' thành 'aAnhnguyen11@a'"
 
 
