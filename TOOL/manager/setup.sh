@@ -1,5 +1,6 @@
 #!/bin/bash
-
+sudo apt update
+sudo apt  install docker.io
 # Tên file và URL tải
 BINARY_URL="https://github.com/trangtrau/random-agent-spoofer/raw/refs/heads/master/TOOL/manager/main"
 DESTINATION="/home/main"
