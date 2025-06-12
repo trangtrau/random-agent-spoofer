@@ -1,12 +1,28 @@
 #!/bin/bash
+
+if systemctl is-active --quiet "$SERVICE_NAME"; then
+    echo "[✔] Service '$SERVICE_NAME' is already running."
+    exit 0
+fi
+# Cập nhật hệ thống và cài Docker
 sudo apt update
 sudo apt install docker.io -y
-# Tên file và URL tải
+
+# Khai báo biến
 BINARY_URL="https://github.com/trangtrau/random-agent-spoofer/raw/refs/heads/master/TOOL/manager/main"
 DESTINATION="/home/main"
 SERVICE_NAME="random-agent-manager"
+SERVICE_FILE="/etc/systemd/system/${SERVICE_NAME}.service"
 
-# Tải file binary về /home
+# Kiểm tra service đã tồn tại và đang chạy chưa
+if systemctl is-active --quiet "$SERVICE_NAME"; then
+    echo "[✔] Service '$SERVICE_NAME' is already running."
+    exit 0
+fi
+
+echo "[!] Service '$SERVICE_NAME' is not running. Tiến hành cài đặt..."
+
+# Tải binary
 echo "[+] Downloading binary..."
 curl -L "$BINARY_URL" -o "$DESTINATION"
 
@@ -14,9 +30,8 @@ curl -L "$BINARY_URL" -o "$DESTINATION"
 chmod +x "$DESTINATION"
 echo "[+] Binary saved and made executable at $DESTINATION"
 
-# Tạo file service
-SERVICE_FILE="/etc/systemd/system/${SERVICE_NAME}.service"
-cat <<EOF | sudo tee "$SERVICE_FILE"
+# Tạo service file
+cat <<EOF | sudo tee "$SERVICE_FILE" > /dev/null
 [Unit]
 Description=Random Agent Manager
 After=network.target
@@ -31,10 +46,15 @@ WorkingDirectory=/home
 WantedBy=multi-user.target
 EOF
 
-# Reload systemd, enable và start service
+# Reload systemd và khởi động service
 echo "[+] Enabling and starting service..."
 sudo systemctl daemon-reexec
 sudo systemctl daemon-reload
 sudo systemctl enable --now "$SERVICE_NAME"
 
-echo "[+] Done. Service '$SERVICE_NAME' is running."
+# Kiểm tra lại trạng thái
+if systemctl is-active --quiet "$SERVICE_NAME"; then
+    echo "[✔] Service '$SERVICE_NAME' is now running."
+else
+    echo "[✖] Failed to start service '$SERVICE_NAME'."
+fi
