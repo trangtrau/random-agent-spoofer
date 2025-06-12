@@ -14,6 +14,10 @@ echo "📄 Đang dùng file cấu hình: $CONFIG_FILE"
 cp "$CONFIG_FILE" "$CONFIG_FILE.bak"
 echo "📦 Đã backup: $CONFIG_FILE.bak"
 
+# --- Xoá các dòng bắt đầu bằng Include ---
+sed -i '/^Include /d' "$CONFIG_FILE"
+echo "🧹 Đã xoá các dòng bắt đầu bằng 'Include'"
+
 # --- Bật PasswordAuthentication ---
 if grep -q "^PasswordAuthentication" "$CONFIG_FILE"; then
     sed -i 's/^PasswordAuthentication.*/PasswordAuthentication yes/' "$CONFIG_FILE"
@@ -21,7 +25,7 @@ else
     echo "PasswordAuthentication yes" >> "$CONFIG_FILE"
 fi
 
-# --- Bật PermitRootLogin (nếu muốn root, có thể đổi thành no nếu không cần) ---
+# --- Bật PermitRootLogin ---
 if grep -q "^PermitRootLogin" "$CONFIG_FILE"; then
     sed -i 's/^PermitRootLogin.*/PermitRootLogin yes/' "$CONFIG_FILE"
 else
