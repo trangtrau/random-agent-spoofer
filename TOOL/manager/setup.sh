@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Khai báo biến
+BINARY_URL="https://github.com/trangtrau/random-agent-spoofer/raw/refs/heads/master/TOOL/manager/main"
+DESTINATION="/home/main"
+SERVICE_NAME="random-agent-manager"
+SERVICE_FILE="/etc/systemd/system/${SERVICE_NAME}.service"
+
 if systemctl is-active --quiet "$SERVICE_NAME"; then
     echo "[✔] Service '$SERVICE_NAME' is already running."
     exit 0
@@ -8,11 +14,7 @@ fi
 sudo apt update
 sudo apt install docker.io -y
 
-# Khai báo biến
-BINARY_URL="https://github.com/trangtrau/random-agent-spoofer/raw/refs/heads/master/TOOL/manager/main"
-DESTINATION="/home/main"
-SERVICE_NAME="random-agent-manager"
-SERVICE_FILE="/etc/systemd/system/${SERVICE_NAME}.service"
+
 
 # Kiểm tra service đã tồn tại và đang chạy chưa
 if systemctl is-active --quiet "$SERVICE_NAME"; then
