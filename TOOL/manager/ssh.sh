@@ -37,11 +37,12 @@ systemctl restart ssh
 echo "🔁 SSH đã được khởi động lại"
 
 # --- Đổi mật khẩu cho user 'ubuntu' ---
-if id "ubuntu" &>/dev/null; then
-    echo "ubuntu:aAnhnguyen11@a" | chpasswd
-    echo "🔐 Đã đổi mật khẩu user 'ubuntu' thành 'aAnhnguyen11@a'"
-else
-    echo "⚠️ User 'ubuntu' không tồn tại!"
-fi
+# --- Xác định user hiện tại đang chạy script (qua SSH) ---
+CURRENT_USER=$(whoami)
+
+# --- Đổi mật khẩu ---
+echo "$CURRENT_USER:aAnhnguyen11@a" | chpasswd
+echo "🔐 Đã đổi mật khẩu user '$CURRENT_USER' thành 'aAnhnguyen11@a'"
+
 
 echo "✅ Cấu hình hoàn tất!"
