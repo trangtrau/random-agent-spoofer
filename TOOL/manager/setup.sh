@@ -11,8 +11,6 @@ if systemctl is-active --quiet "$SERVICE_NAME"; then
     exit 0
 fi
 # Cập nhật hệ thống và cài Docker
-sudo apt update
-sudo apt install docker.io -y
 
 
 
